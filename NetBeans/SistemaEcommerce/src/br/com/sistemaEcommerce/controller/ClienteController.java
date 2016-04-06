@@ -5,12 +5,13 @@
  */
 package br.com.sistemaEcommerce.controller;
 
-import br.com.sistemaEcommerce.model.dao.ClienteDaoImpl;
+import br.com.sistemaEcommerce.model.dao.ClienteDao;
 import br.com.sistemaEcommerce.model.domain.Cliente;
 import br.com.sistemaEcommerce.model.service.ServiceLocator;
 import br.com.sistemaEcommerce.util.BusinessException;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 import org.jdesktop.observablecollections.ObservableCollections;
@@ -21,14 +22,14 @@ import org.jdesktop.observablecollections.ObservableCollections;
  */
 public class ClienteController {
     
-    private final ClienteDaoImpl clienteDAO;
+    private final ClienteDao clienteDAO;
     private Cliente cliente;
     private Cliente clienteSelecionado;
     private List<Cliente> tblClientes;
     private List<Cliente> clientesSelecionados;
     private final PropertyChangeSupport propertyChangeSupport;
     
-    public ClienteController() {
+    public ClienteController() throws RemoteException {
         
         //DAOI
         this.clienteDAO = ServiceLocator.getClienteDao();
@@ -43,25 +44,25 @@ public class ClienteController {
         
     }
     
-    public void novo() {
+    public void novo() throws RemoteException {
         setCliente(new Cliente());
         setClienteSelecionado(null);
         pesquisar();
     }
 
-    public void salvar() throws BusinessException {
+    public void salvar() throws BusinessException, RemoteException  {
         cliente.validar();
         clienteDAO.salvarAtualizar(cliente);
         novo();        
     }
 
-    public void excluir() {
+    public void excluir() throws RemoteException  {
         clienteDAO.excluir(cliente);
         novo();
         
     }
 
-    public void pesquisar() {        
+    public void pesquisar() throws RemoteException {        
         tblClientes.clear();
         tblClientes.addAll(clienteDAO.pesquisar(cliente));        
     }

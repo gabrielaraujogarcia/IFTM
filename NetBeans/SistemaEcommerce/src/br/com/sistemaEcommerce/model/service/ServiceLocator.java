@@ -5,7 +5,11 @@
  */
 package br.com.sistemaEcommerce.model.service;
 
-import br.com.sistemaEcommerce.model.dao.ClienteDaoImpl;
+import br.com.sistemaEcommerce.model.dao.ClienteDao;
+import java.rmi.Naming;
+import java.rmi.RemoteException;
+
+
 
 /**
  *
@@ -13,8 +17,14 @@ import br.com.sistemaEcommerce.model.dao.ClienteDaoImpl;
  */
 public class ServiceLocator {
 
-    public static ClienteDaoImpl getClienteDao() {
-        return new ClienteDaoImpl();
+    public static ClienteDao getClienteDao() throws RemoteException {
+        
+        try {
+            return (ClienteDao) Naming.lookup(ClienteDao.ULR_SERVICO);
+        } catch(Exception e) {
+            throw new RemoteException(e.getMessage());
+        }
+        
     }
     
 }

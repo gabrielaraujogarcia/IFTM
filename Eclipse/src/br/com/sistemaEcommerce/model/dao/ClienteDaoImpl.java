@@ -6,6 +6,9 @@
 package br.com.sistemaEcommerce.model.dao;
 
 import br.com.sistemaEcommerce.model.domain.Cliente;
+
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -14,8 +17,12 @@ import javax.persistence.Query;
  *
  * @author Gabriel
  */
-public class ClienteDaoImpl implements ClienteDao {
+public class ClienteDaoImpl extends UnicastRemoteObject implements ClienteDao {
     
+	public ClienteDaoImpl() throws RemoteException {
+	
+	}
+	
     @Override
     public void salvarAtualizar(Cliente cliente) {
         
