@@ -20,8 +20,8 @@ public interface ClienteDao extends Remote {
 	static final String NOME_SERVICO = "ServicoCliente";
 	static final String ULR_SERVICO = "rmi://127.0.0.1/" + NOME_SERVICO;
 	
+	void salvarAtualizar(Cliente cliente) throws RemoteException;
     void excluir(Cliente cliente) throws RemoteException;
     List<Cliente> pesquisar(Cliente cliente) throws RemoteException;
-    void salvarAtualizar(Cliente cliente) throws RemoteException;
     
 }

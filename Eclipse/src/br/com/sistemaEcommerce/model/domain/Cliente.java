@@ -6,6 +6,8 @@
 package br.com.sistemaEcommerce.model.domain;
 
 import br.com.sistemaEcommerce.util.BusinessException;
+
+import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,9 +20,11 @@ import javax.persistence.Id;
  * @author ggarcia
  */
 @Entity(name = "Cliente")
-public class Cliente {
-        
-    @Id
+public class Cliente implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Integer codigo;

@@ -19,6 +19,8 @@ import javax.persistence.Query;
  */
 public class ClienteDaoImpl extends UnicastRemoteObject implements ClienteDao {
     
+	private static final long serialVersionUID = 1L;
+
 	public ClienteDaoImpl() throws RemoteException {
 	
 	}
@@ -34,7 +36,6 @@ public class ClienteDaoImpl extends UnicastRemoteObject implements ClienteDao {
         }
                 
         em.persist(cliente);
-        
         em.getTransaction().commit();
         em.close();
     

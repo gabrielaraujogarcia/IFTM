@@ -7,6 +7,7 @@ package br.com.sistemaEcommerce.view;
 
 import br.com.sistemaEcommerce.controller.ClienteController;
 import br.com.sistemaEcommerce.util.BusinessException;
+import java.rmi.RemoteException;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,14 +16,22 @@ import javax.swing.JOptionPane;
  */
 public class ClienteView extends javax.swing.JInternalFrame {
     
-    private final ClienteController clienteController;
+    private ClienteController clienteController;
 
     /**
      * Creates new form ClienteView
      */
     public ClienteView() {
-        clienteController = new ClienteController();
-        initComponents();
+     
+        try {           
+            clienteController = new ClienteController();            
+        } catch(RemoteException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Erro" + e.getMessage(), 
+                    "Erro", JOptionPane.ERROR_MESSAGE);                                              
+        } 
+                
+        initComponents();        
     }
 
     public ClienteController getClienteController() {
@@ -241,11 +250,25 @@ public class ClienteView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        clienteController.pesquisar();
+        
+        try {
+            clienteController.pesquisar();
+        } catch(RemoteException e) {
+            JOptionPane.showMessageDialog(this, "Erro" + e.getMessage(), 
+                    "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+                
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        clienteController.novo();
+        
+        try {
+            clienteController.novo();
+        } catch(RemoteException e) {
+            JOptionPane.showMessageDialog(this, "Erro" + e.getMessage(), 
+                    "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
@@ -264,10 +287,14 @@ public class ClienteView extends javax.swing.JInternalFrame {
         } catch(BusinessException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Atenção", 
                     JOptionPane.WARNING_MESSAGE);
-        } catch(Exception e) {
-            JOptionPane.showMessageDialog(this, "Erro no sistema: " + 
-                    e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-        }
+        } catch(RemoteException e) {
+            JOptionPane.showMessageDialog(this, "Erro" + e.getMessage(), 
+                    "Erro", JOptionPane.ERROR_MESSAGE);
+        } 
+//        catch(Exception e) {
+//            JOptionPane.showMessageDialog(this, "Erro no sistema: " + 
+//                    e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+//        }
         
     }//GEN-LAST:event_btnSalvarActionPerformed
 
@@ -277,7 +304,13 @@ public class ClienteView extends javax.swing.JInternalFrame {
                 "Atenção", 
                 JOptionPane.YES_NO_OPTION) == JOptionPane.YES_NO_OPTION) {
             
-            clienteController.excluir();
+            try {
+                clienteController.excluir();
+            } catch(RemoteException e) {
+                JOptionPane.showMessageDialog(this, "Erro" + e.getMessage(), 
+                    "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+            
             JOptionPane.showMessageDialog(this, "Excluído com sucesso!", 
                     "Sucesso", JOptionPane.INFORMATION_MESSAGE);
         }

@@ -12,7 +12,7 @@ public class Principal {
 		
 		try {
 			
-			System.out.println("Tentanto inicializar o serviço");
+			System.out.println("Inicializando o serviço");
 			
 			LocateRegistry.createRegistry(1099);
 			Naming.rebind(ClienteDao.NOME_SERVICO, new ClienteDaoImpl());
