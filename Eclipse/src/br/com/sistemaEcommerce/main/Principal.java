@@ -12,15 +12,15 @@ public class Principal {
 		
 		try {
 			
-			System.out.println("Inicializando o serviço");
+			System.out.println("Inicializando o serviÃ§o");
 			
 			LocateRegistry.createRegistry(1099);
 			Naming.rebind(ClienteDao.NOME_SERVICO, new ClienteDaoImpl());
 			
-			System.out.println("Serviço ativo!");
+			System.out.println("ServiÃ§o ativo!");
 			
 		} catch(Exception e) {
-			System.out.println("Erro ao tentar inicializar o serviço: "+ e.getMessage());
+			System.out.println("Erro ao tentar inicializar o serviÃ§o: "+ e.getMessage());
 		}
 		
 	}

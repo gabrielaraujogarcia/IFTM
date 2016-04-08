@@ -26,7 +26,6 @@ public class ClienteView extends javax.swing.JInternalFrame {
         try {           
             clienteController = new ClienteController();            
         } catch(RemoteException e) {
-            e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Erro" + e.getMessage(), 
                     "Erro", JOptionPane.ERROR_MESSAGE);                                              
         } 
@@ -264,6 +263,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
         
         try {
             clienteController.novo();
+            clienteController.pesquisar();
         } catch(RemoteException e) {
             JOptionPane.showMessageDialog(this, "Erro" + e.getMessage(), 
                     "Erro", JOptionPane.ERROR_MESSAGE);
@@ -280,7 +280,9 @@ public class ClienteView extends javax.swing.JInternalFrame {
         try {
             
             clienteController.salvar();
-            
+            clienteController.novo();
+            clienteController.pesquisar();
+                        
             JOptionPane.showMessageDialog(this, "Inserido com sucesso!", 
                 "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             
@@ -291,10 +293,6 @@ public class ClienteView extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Erro" + e.getMessage(), 
                     "Erro", JOptionPane.ERROR_MESSAGE);
         } 
-//        catch(Exception e) {
-//            JOptionPane.showMessageDialog(this, "Erro no sistema: " + 
-//                    e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-//        }
         
     }//GEN-LAST:event_btnSalvarActionPerformed
 
@@ -305,7 +303,11 @@ public class ClienteView extends javax.swing.JInternalFrame {
                 JOptionPane.YES_NO_OPTION) == JOptionPane.YES_NO_OPTION) {
             
             try {
+                
                 clienteController.excluir();
+                clienteController.novo();
+                clienteController.pesquisar();
+                
             } catch(RemoteException e) {
                 JOptionPane.showMessageDialog(this, "Erro" + e.getMessage(), 
                     "Erro", JOptionPane.ERROR_MESSAGE);

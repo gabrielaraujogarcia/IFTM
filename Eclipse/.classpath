@@ -20,8 +20,6 @@
 	<classpathentry kind="lib" path="lib/hibernate4-persistence/slf4j-simple-1.6.1.jar"/>
 	<classpathentry kind="lib" path="lib/hibernate4-persistencemodelgen/hibernate-jpamodelgen-4.3.1.Final.jar"/>
 	<classpathentry kind="lib" path="lib/jandex-2.0.2.Final.jar"/>
-	<classpathentry kind="lib" path="lib/JAVADB_DRIVER_LABEL/derby.jar"/>
-	<classpathentry kind="lib" path="lib/JAVADB_DRIVER_LABEL/derbyclient.jar"/>
-	<classpathentry kind="lib" path="lib/JAVADB_DRIVER_LABEL/derbynet.jar"/>
+	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.38-bin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

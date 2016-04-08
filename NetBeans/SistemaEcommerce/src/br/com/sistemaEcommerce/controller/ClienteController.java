@@ -41,25 +41,22 @@ public class ClienteController {
         propertyChangeSupport = new PropertyChangeSupport(this);
         
         this.novo();
-        
+        this.pesquisar();
     }
+    
     
     public void novo() throws RemoteException {
         setCliente(new Cliente());
         setClienteSelecionado(null);
-        pesquisar();
     }
 
     public void salvar() throws BusinessException, RemoteException  {
         cliente.validar();
-        clienteDAO.salvarAtualizar(cliente);
-        novo();        
+        clienteDAO.salvarAtualizar(cliente);  
     }
 
     public void excluir() throws RemoteException  {
-        clienteDAO.excluir(cliente);
-        novo();
-        
+        clienteDAO.excluir(cliente);      
     }
 
     public void pesquisar() throws RemoteException {        
