@@ -127,6 +127,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
         lblCodigo.setText("Código:");
 
         org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${clienteController.cliente.codigo}"), txtCodigo, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        binding.setConverter(new br.com.sistemaEcommerce.view.converter.IntegerConverter());
         bindingGroup.addBinding(binding);
 
         txtCodigo.addActionListener(new java.awt.event.ActionListener() {
@@ -316,7 +317,6 @@ public class ClienteView extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Excluído com sucesso!", 
                     "Sucesso", JOptionPane.INFORMATION_MESSAGE);
         }
-        
         
     }//GEN-LAST:event_btnExcluirActionPerformed
 
