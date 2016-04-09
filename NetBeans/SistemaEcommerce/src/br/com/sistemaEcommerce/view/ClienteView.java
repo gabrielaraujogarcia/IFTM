@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package br.com.sistemaEcommerce.view;
-
+ 
 import br.com.sistemaEcommerce.controller.ClienteController;
 import br.com.sistemaEcommerce.util.BusinessException;
 import java.rmi.RemoteException;
@@ -21,15 +21,8 @@ public class ClienteView extends javax.swing.JInternalFrame {
     /**
      * Creates new form ClienteView
      */
-    public ClienteView() {
-     
-        try {           
-            clienteController = new ClienteController();            
-        } catch(RemoteException e) {
-            JOptionPane.showMessageDialog(this, "Erro" + e.getMessage(), 
-                    "Erro", JOptionPane.ERROR_MESSAGE);                                              
-        } 
-                
+    public ClienteView() throws RemoteException {
+        clienteController = new ClienteController();            
         initComponents();        
     }
 

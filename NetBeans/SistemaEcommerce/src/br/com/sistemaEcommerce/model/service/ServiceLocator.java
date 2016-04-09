@@ -5,8 +5,10 @@
  */
 package br.com.sistemaEcommerce.model.service;
 
-import br.com.sistemaEcommerce.model.dao.ClienteDao;
+import br.com.sistemaEcommerce.model.service.rmi.IClienteService;
+import java.net.MalformedURLException;
 import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 
@@ -17,11 +19,11 @@ import java.rmi.RemoteException;
  */
 public class ServiceLocator {
 
-    public static ClienteDao getClienteDao() throws RemoteException {
+    public static IClienteService getClienteDao() throws RemoteException {
         
         try {
-            return (ClienteDao) Naming.lookup(ClienteDao.ULR_SERVICO);
-        } catch(Exception e) {
+            return (IClienteService) Naming.lookup(IClienteService.ULR_SERVICO);
+        } catch(NotBoundException | MalformedURLException | RemoteException e) {
             throw new RemoteException(e.getMessage());
         }
         

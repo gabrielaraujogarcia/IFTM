@@ -5,6 +5,9 @@
  */
 package br.com.sistemaEcommerce.view;
 
+import java.rmi.RemoteException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ggarcia
@@ -109,16 +112,23 @@ public class MenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_mniFornecedorActionPerformed
 
     private void mniClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniClienteActionPerformed
-        ClienteView view = new ClienteView();
-        this.desktopPane.add(view);
-        
+                              
         try {            
+            
+            ClienteView view = new ClienteView();
+            this.desktopPane.add(view); 
+            
             view.setMaximum(true);
+            view.setVisible(true);
+            
+        } catch (RemoteException e) {
+            JOptionPane.showMessageDialog(this, "Erro" + e.getMessage(), 
+                    "Erro", JOptionPane.ERROR_MESSAGE);
         } catch(Exception e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(this, "Erro na aplicação: " + e.getMessage(), 
+                    "Erro", JOptionPane.ERROR_MESSAGE);
         }
-        
-        view.setVisible(true);
+                
     }//GEN-LAST:event_mniClienteActionPerformed
 
     /**

@@ -5,9 +5,9 @@
  */
 package br.com.sistemaEcommerce.controller;
 
-import br.com.sistemaEcommerce.model.dao.ClienteDao;
 import br.com.sistemaEcommerce.model.domain.Cliente;
 import br.com.sistemaEcommerce.model.service.ServiceLocator;
+import br.com.sistemaEcommerce.model.service.rmi.IClienteService;
 import br.com.sistemaEcommerce.util.BusinessException;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -22,7 +22,7 @@ import org.jdesktop.observablecollections.ObservableCollections;
  */
 public class ClienteController {
     
-    private final ClienteDao clienteDAO;
+    private final IClienteService clienteDAO;
     private Cliente cliente;
     private Cliente clienteSelecionado;
     private List<Cliente> tblClientes;
