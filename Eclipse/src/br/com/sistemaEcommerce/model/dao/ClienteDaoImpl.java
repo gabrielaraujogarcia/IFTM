@@ -5,6 +5,7 @@
  */
 package br.com.sistemaEcommerce.model.dao;
 
+import java.rmi.RemoteException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -16,40 +17,13 @@ import br.com.sistemaEcommerce.model.domain.Cliente;
  *
  * @author Gabriel
  */
-public class ClienteDaoImpl implements ClienteDao {
+public class ClienteDaoImpl extends CrudDaoImpl<Cliente, Integer> implements IClienteDao {
 
-	
-    @Override
-    public void salvarAtualizar(Cliente cliente) {
-        
-        EntityManager em = Conexao.getEntityManager();   
-        em.getTransaction().begin();
-        
-        if(cliente.getCodigo() != null) {
-            cliente = em.merge(cliente);
-        }
-                
-        em.persist(cliente);
-        em.getTransaction().commit();
-        em.close();
-    
-    }
-    
-    @Override
-    public void excluir(Cliente cliente) {
-                
-        EntityManager em = Conexao.getEntityManager();              
-        em.getTransaction().begin();
-        
-        cliente =  em.merge(cliente);
-        em.remove(cliente);
-        
-        em.getTransaction().commit();
-        em.close();
-    
-    }
-    
-    @Override
+    public ClienteDaoImpl() throws RemoteException {
+		
+	}
+
+	@Override
     public List<Cliente> pesquisar(Cliente cliente) {
     
         EntityManager em = Conexao.getEntityManager();

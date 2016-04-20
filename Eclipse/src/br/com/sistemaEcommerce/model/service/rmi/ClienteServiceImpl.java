@@ -4,15 +4,15 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
-import br.com.sistemaEcommerce.model.dao.ClienteDao;
+import br.com.sistemaEcommerce.model.dao.IClienteDao;
 import br.com.sistemaEcommerce.model.domain.Cliente;
 
 public class ClienteServiceImpl extends UnicastRemoteObject implements IClienteService {
 	
 	private static final long serialVersionUID = 1L;
-	private ClienteDao clienteDao;
+	private IClienteDao clienteDao;
 	
-	public ClienteServiceImpl(ClienteDao dao) throws RemoteException {
+	public ClienteServiceImpl(IClienteDao dao) throws RemoteException {
 		this.clienteDao = dao;
 	}
 
