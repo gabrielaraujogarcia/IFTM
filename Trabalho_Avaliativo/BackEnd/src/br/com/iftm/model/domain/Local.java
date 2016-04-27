@@ -10,8 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="TB_ENDERECO")
-public class Endereco implements Serializable {
+@Table(name="LOCAL")
+public class Local implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -20,16 +20,10 @@ public class Endereco implements Serializable {
 	@Column(name="ID")
 	private Long id;
 	
-	@Column(name="LOGRADOURO")
-	private String logradouro;
+	@Column(name="DESCRICAO", unique=true)
+	private String descricao;
 	
-	@Column(name="BAIRRO")
-	private String bairro;
-	
-	@Column(name="NUMERO")
-	private Integer numero;
-	
-	public Endereco() {
+	public Local() {
 		
 	}
 	
@@ -39,30 +33,6 @@ public class Endereco implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getLogradouro() {
-		return logradouro;
-	}
-
-	public void setLogradouro(String logradouro) {
-		this.logradouro = logradouro;
-	}
-
-	public String getBairro() {
-		return bairro;
-	}
-
-	public void setBairro(String bairro) {
-		this.bairro = bairro;
-	}
-
-	public Integer getNumero() {
-		return numero;
-	}
-
-	public void setNumero(Integer numero) {
-		this.numero = numero;
 	}
 
 	@Override
@@ -81,7 +51,7 @@ public class Endereco implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Endereco other = (Endereco) obj;
+		Local other = (Local) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -89,5 +59,5 @@ public class Endereco implements Serializable {
 			return false;
 		return true;
 	}
-	
+
 }

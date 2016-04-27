@@ -18,7 +18,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TB_COMPROMISSO")
+@Table(name = "COMPROMISSO")
 public class Compromisso implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -39,7 +39,7 @@ public class Compromisso implements Serializable {
 	
 	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.DETACH)
 	@PrimaryKeyJoinColumn
-	private Endereco endereco;
+	private Local local;
 	
 	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.DETACH)
 	@PrimaryKeyJoinColumn
@@ -73,12 +73,12 @@ public class Compromisso implements Serializable {
 		this.participantes = participantes;
 	}
 
-	public Endereco getEndereco() {
-		return endereco;
+	public Local getLocal() {
+		return local;
 	}
 
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
+	public void setLocal(Local local) {
+		this.local = local;
 	}
 
 	public TipoCompromisso getTipoCompromisso() {
