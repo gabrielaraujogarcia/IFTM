@@ -1,0 +1,6 @@
+Hook Class
+Bridge
+Singleton
+Tipo de compromisso: Strategy ou Factory ou Enum?
+Observer
+MVC
