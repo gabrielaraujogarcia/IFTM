@@ -12,32 +12,33 @@ import java.util.Map;
  * @param <T>
  * @param <K>
  */
-public interface ICrudDao<T, K> {
+public interface ICrudDao<T> {
 	
 	/**
 	 * Salva ou atualiza um registro T
 	 * @param t
 	 */
-	void saveOrUpdate(T t);
+	void salvarAtualizar(T t);
 	
 	/**
 	 * Deleta o registro T
 	 * @param t
 	 */
-	void delete(T t);
+	void deletar(T t);
+	
+	/**
+	 * Realiza o merge do objeto com o banco de dados. Utilizado no
+	 * controle dos estados dos objetos com o banco de dados.
+	 * @param t
+	 * @return
+	 */
+	T sincronizar(T t);
 	
 	/**
 	 * Consulta a partir do HQL
 	 * @param t
 	 * @return
 	 */
-	List<T> find(String hql, Map<String, Object> params);
-	
-	/**
-	 * Consulta a partir da chave de T
-	 * @param k
-	 * @return
-	 */
-	T findById(K k);
+	List<T> consultar(String hql, Map<String, Object> params);
 	
 }

@@ -9,12 +9,12 @@ import javax.persistence.Persistence;
  * @author ggarcia
  *
  */
-public class DBConnector {
+public final class DBConnector {
 	
 	/**
 	 * Nome da unidade de persistencia definido no arquivo persistence.xml
 	 */
-	private static final String PERSISTENCE_UNIT_NAME ="CompromissoPU";
+	private static final String UNIDADE_PERSISTENCIA ="CompromissoPU";
 	
 	/**
 	 * Fabrica de entidades persistences fornecida pela API do JPA
@@ -30,7 +30,7 @@ public class DBConnector {
 	 * Construtor privado para manter o encapsulamento desta classe
 	 */
 	private DBConnector() {
-		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		emf = Persistence.createEntityManagerFactory(UNIDADE_PERSISTENCIA);
 	}
 	
 	/**

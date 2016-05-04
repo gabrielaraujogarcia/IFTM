@@ -23,6 +23,9 @@ public class Local implements Serializable {
 	@Column(name="DESCRICAO", unique=true)
 	private String descricao;
 	
+	@Column(name="PONTO_REFERENCIA")
+	private String pontoReferencia;
+	
 	public Local() {
 		
 	}
