@@ -57,6 +57,14 @@ public class Participante implements Serializable {
 		this.email = email;
 	}
 
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

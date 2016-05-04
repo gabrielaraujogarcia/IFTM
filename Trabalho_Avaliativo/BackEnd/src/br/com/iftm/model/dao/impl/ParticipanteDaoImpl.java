@@ -52,12 +52,12 @@ public class ParticipanteDaoImpl implements IParticipanteDao {
 			sb.append(" and p.id = :id ");
 		}
 		
-		if(participante.getNome() != null && !"".equals(participante.getNome().trim())) {
+		if(participante.getNome() != null && !participante.getNome().equals("")) {
 			sb.append(" and p.nome like :nome ");
 		}
 		
 		if(participante.getEmail() != null && "".equals(participante.getEmail().trim())) {
-			sb.append(" and p.email like :emial ");
+			sb.append(" and p.email like :email ");
 		}
 		
 		return sb.toString();
@@ -78,8 +78,8 @@ public class ParticipanteDaoImpl implements IParticipanteDao {
 			parametros.put("id", participante.getId());
 		}
 		
-		if(participante.getNome() != null && !"".equals(participante.getNome().trim())) {
-			parametros.put("nome", participante.getNome());
+		if(participante.getNome() != null && !participante.getNome().equals("")) {
+			parametros.put("nome", "%"+ participante.getNome() + "%");
 		}
 			
 		if(participante.getEmail() != null && "".equals(participante.getEmail().trim())) {
