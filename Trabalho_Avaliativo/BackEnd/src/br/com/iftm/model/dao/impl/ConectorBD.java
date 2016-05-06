@@ -16,14 +16,8 @@ import br.com.iftm.model.dao.IConfiguracaoPersistencia;
 public final class ConectorBD {
 	
 	/**
-	 * Nome da unidade de persistencia definido no arquivo persistence.xml
+	 * Mapa que contem as fabricas de entidades persistentes fornecida pela API do JPA
 	 */
-	private static final String UNIDADE_PERSISTENCIA = "CompromissoPU";
-	
-	/**
-	 * Fabrica de entidades persistences fornecida pela API do JPA
-	 */
-	//private static EntityManagerFactory emf;
 	private static HashMap<String, EntityManagerFactory> fabricas;
 	
 	/**
@@ -36,7 +30,6 @@ public final class ConectorBD {
 	 */
 	private ConectorBD() {
 		fabricas = new HashMap<>();
-		//Persistence.createEntityManagerFactory(UNIDADE_PERSISTENCIA);
 	}
 	
 	/**

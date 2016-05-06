@@ -15,7 +15,7 @@ public class ParticipanteDaoImpl implements IParticipanteDao, IConfiguracaoPersi
 	private CrudDaoImpl<Participante> crudDao;
 	
 	public ParticipanteDaoImpl() throws Exception {
-		EntityManager em = ConectorBD.recuperaGerenciadorConexao(this::recuperaConfiguracaoUnidadePersistencia);
+		EntityManager em = ConectorBD.recuperaGerenciadorConexao(this);
 		this.crudDao = new CrudDaoImpl<>(em);
 	}
 	
