@@ -1,7 +1,6 @@
 package br.com.iftm.model.domain;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,9 +9,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -31,11 +27,11 @@ public class Compromisso implements Serializable {
 	@Column(name = "DESCRICAO")
 	private String descricao;
 
-	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable(name = "PARTICIPANTES_COMPROMISSO", 
-		joinColumns = {@JoinColumn(name = "ID_COMPROMISSO", referencedColumnName = "id")},
-		inverseJoinColumns = {@JoinColumn(name = "ID_PARTICIPANTE", referencedColumnName = "id")})
-	private List<Participante> participantes;
+//	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+//	@JoinTable(name = "PARTICIPANTES_COMPROMISSO", 
+//		joinColumns = {@JoinColumn(name = "ID_COMPROMISSO", referencedColumnName = "id")},
+//		inverseJoinColumns = {@JoinColumn(name = "ID_PARTICIPANTE", referencedColumnName = "id")})
+//	private List<Participante> participantes;
 	
 	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.DETACH)
 	@PrimaryKeyJoinColumn
@@ -65,13 +61,13 @@ public class Compromisso implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public List<Participante> getParticipantes() {
-		return participantes;
-	}
-
-	public void setParticipantes(List<Participante> participantes) {
-		this.participantes = participantes;
-	}
+//	public List<Participante> getParticipantes() {
+//		return participantes;
+//	}
+//
+//	public void setParticipantes(List<Participante> participantes) {
+//		this.participantes = participantes;
+//	}
 
 	public Local getLocal() {
 		return local;
