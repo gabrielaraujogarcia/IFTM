@@ -14,7 +14,7 @@ public final class DBConnector {
 	/**
 	 * Nome da unidade de persistencia definido no arquivo persistence.xml
 	 */
-	private static final String UNIDADE_PERSISTENCIA ="CompromissoPU";
+	private static final String UNIDADE_PERSISTENCIA = "CompromissoPU";
 	
 	/**
 	 * Fabrica de entidades persistences fornecida pela API do JPA
