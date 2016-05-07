@@ -9,40 +9,40 @@ import javax.persistence.Persistence;
  * @author ggarcia
  *
  */
-public final class DBConnector {
+public final class ConectorBD {
 	
 	/**
-	 * Nome da unidade de persistencia definido no arquivo persistence.xml
+	 * Nome da unidade de persistencia de compromissos definido no arquivo persistence.xml
 	 */
-	private static final String UNIDADE_PERSISTENCIA = "CompromissoPU";
+	public static final String COMPROMISSO_PU = "CompromissoPU";
 	
 	/**
-	 * Fabrica de entidades persistences fornecida pela API do JPA
+	 * Mapa que contem as fabricas de entidades persistentes fornecida pela API do JPA
 	 */
 	private static EntityManagerFactory emf;
 	
 	/**
 	 * Instancia unica (Singleton) da classe DBConnector na aplicacao
 	 */
-	private static DBConnector connector;
+	private static ConectorBD conector;
 	
 	/**
 	 * Construtor privado para manter o encapsulamento desta classe
 	 */
-	private DBConnector() {
-		emf = Persistence.createEntityManagerFactory(UNIDADE_PERSISTENCIA);
+	private ConectorBD() {
+		emf = Persistence.createEntityManagerFactory(COMPROMISSO_PU);
 	}
 	
 	/**
 	 * Retorna a instancia da unidade de persistencia da aplicacao
 	 * @return
 	 */
-	public static synchronized EntityManager getEntityManager() {
+	public static synchronized EntityManager recuperaGerenciadorConexao() 
+		throws Exception {
 		
-		if(connector == null) {
-			connector = new DBConnector();
+		if(conector == null) {
+			conector = new ConectorBD();
 		}
-		
 		return emf.createEntityManager();
 		
 	}
