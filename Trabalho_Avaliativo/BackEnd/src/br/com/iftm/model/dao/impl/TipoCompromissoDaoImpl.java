@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 
 import org.apache.commons.lang3.StringUtils;
 
-import br.com.iftm.model.dao.IConfiguracaoPersistencia;
 import br.com.iftm.model.dao.ITipoCompromissoDao;
 import br.com.iftm.model.domain.TipoCompromisso;
 
@@ -20,12 +19,12 @@ import br.com.iftm.model.domain.TipoCompromisso;
  * @see TipoCompromisso
  *
  */
-public class TipoCompromissoDaoImpl implements ITipoCompromissoDao, IConfiguracaoPersistencia {
+public class TipoCompromissoDaoImpl implements ITipoCompromissoDao {
 
 	private CrudDaoImpl<TipoCompromisso> dao;
 
 	public TipoCompromissoDaoImpl() throws Exception {
-		EntityManager em = ConectorBD.recuperaGerenciadorConexao(this);
+		EntityManager em = ConectorBD.recuperaGerenciadorConexao();
 		this.dao = new CrudDaoImpl<>(em);
 	}
 
@@ -108,9 +107,4 @@ public class TipoCompromissoDaoImpl implements ITipoCompromissoDao, IConfiguraca
 		return parametros;
 	}
 
-	@Override
-	public String recuperaConfiguracaoUnidadePersistencia() {
-		return COMPROMISSO_PU;
-	}
-	
 }

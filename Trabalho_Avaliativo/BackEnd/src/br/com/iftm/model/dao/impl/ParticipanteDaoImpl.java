@@ -8,16 +8,15 @@ import javax.persistence.EntityManager;
 
 import org.apache.commons.lang3.StringUtils;
 
-import br.com.iftm.model.dao.IConfiguracaoPersistencia;
 import br.com.iftm.model.dao.IParticipanteDao;
 import br.com.iftm.model.domain.Participante;
 
-public class ParticipanteDaoImpl implements IParticipanteDao, IConfiguracaoPersistencia {
+public class ParticipanteDaoImpl implements IParticipanteDao {
 
 	private CrudDaoImpl<Participante> crudDao;
 
 	public ParticipanteDaoImpl() throws Exception {
-		EntityManager em = ConectorBD.recuperaGerenciadorConexao(this);
+		EntityManager em = ConectorBD.recuperaGerenciadorConexao();
 		this.crudDao = new CrudDaoImpl<>(em);
 	}
 	
@@ -91,11 +90,6 @@ public class ParticipanteDaoImpl implements IParticipanteDao, IConfiguracaoPersi
 		
 		return parametros;
 		
-	}
-
-	@Override
-	public String recuperaConfiguracaoUnidadePersistencia() {
-		return IConfiguracaoPersistencia.PESSOA_PU;
 	}
 	
 }
