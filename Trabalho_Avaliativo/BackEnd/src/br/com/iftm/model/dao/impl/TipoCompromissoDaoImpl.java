@@ -29,24 +29,15 @@ public class TipoCompromissoDaoImpl implements ITipoCompromissoDao {
 	}
 
 	/**
-	 * Método responsável por salvar um TipoCompromisso
+	 * Método responsável por listar todos TipoCompromisso da base de dados
 	 * 
 	 * @param tipoCompromisso
 	 */
 	@Override
-	public void salvar(TipoCompromisso tipoCompromisso) {
-		dao.salvarAtualizar(tipoCompromisso);
-
-	}
-
-	/**
-	 * Método responsável por excluir um TipoCompromisso
-	 * 
-	 * @param tipoCompromisso
-	 */
-	@Override
-	public void deletar(TipoCompromisso tipoCompromisso) {
-		dao.deletar(tipoCompromisso);
+	public List<TipoCompromisso> listar() {
+		String hql = consultaPesquisarParticipantes(null);
+		Map<String, Object> parametros = preparaParametrosConsulta(null);
+		return dao.consultar(hql, parametros);
 
 	}
 

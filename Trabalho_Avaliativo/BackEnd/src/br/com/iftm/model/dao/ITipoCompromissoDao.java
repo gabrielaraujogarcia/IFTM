@@ -14,9 +14,7 @@ import br.com.iftm.model.domain.TipoCompromisso;
  */
 public interface ITipoCompromissoDao {
 
-	void salvar(TipoCompromisso tipoCompromisso);
-
-	void deletar(TipoCompromisso tipoCompromisso);
+	List<TipoCompromisso> listar();
 
 	List<TipoCompromisso> pesquisar(TipoCompromisso tipoCompromisso);
 
