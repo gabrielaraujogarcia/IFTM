@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.persistence.EntityManager;
 
+import org.apache.commons.lang3.StringUtils;
+
 import br.com.iftm.model.dao.IConfiguracaoPersistencia;
 import br.com.iftm.model.dao.IParticipanteDao;
 import br.com.iftm.model.domain.Participante;
@@ -13,12 +15,13 @@ import br.com.iftm.model.domain.Participante;
 public class ParticipanteDaoImpl implements IParticipanteDao, IConfiguracaoPersistencia {
 
 	private CrudDaoImpl<Participante> crudDao;
-	
+
 	public ParticipanteDaoImpl() throws Exception {
 		EntityManager em = ConectorBD.recuperaGerenciadorConexao(this);
 		this.crudDao = new CrudDaoImpl<>(em);
 	}
 	
+
 	@Override
 	public void salvarAtualizar(Participante participante) {
 		crudDao.salvarAtualizar(participante);
@@ -51,18 +54,18 @@ public class ParticipanteDaoImpl implements IParticipanteDao, IConfiguracaoPersi
 		if(participante.getId() != null) {
 			sb.append(" and p.id = :id ");
 		}
-		
-		if(participante.getNome() != null && !participante.getNome().equals("")) {
+
+		if(StringUtils.isNotBlank(participante.getNome())) {
 			sb.append(" and p.nome like :nome ");
 		}
-		
-		if(participante.getEmail() != null && "".equals(participante.getEmail().trim())) {
+
+		if(StringUtils.isNoneBlank(participante.getEmail())) {
 			sb.append(" and p.email like :email ");
 		}
-		
+
 		return sb.toString();
 	}
-	
+
 	/**
 	 * Cria um mapa contendo os parametros da consulta de participantes de acordo com os
 	 * atributos do participante preenchido. Os atributos considerados sao: id, nome e 
@@ -77,12 +80,12 @@ public class ParticipanteDaoImpl implements IParticipanteDao, IConfiguracaoPersi
 		if(participante.getId() != null) {
 			parametros.put("id", participante.getId());
 		}
-		
-		if(participante.getNome() != null && !participante.getNome().equals("")) {
-			parametros.put("nome", "%"+ participante.getNome() + "%");
+
+		if(StringUtils.isNotBlank(participante.getNome())) {
+			parametros.put("nome", "%" + participante.getNome() + "%");
 		}
-			
-		if(participante.getEmail() != null && "".equals(participante.getEmail().trim())) {
+
+		if(StringUtils.isNoneBlank(participante.getEmail())) {
 			parametros.put("email", participante.getEmail());
 		}
 		
