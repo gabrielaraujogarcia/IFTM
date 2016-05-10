@@ -65,12 +65,14 @@ public class TipoCompromissoDaoImpl implements ITipoCompromissoDao {
 		StringBuilder sb = new StringBuilder("from ").append(TipoCompromisso.class.getCanonicalName()).append(" t ")
 				.append(" where 1 = 1 ");
 
-		if (tipoCompromisso.getId() != null) {
-			sb.append(" and t.id = :id ");
-		}
+		if (tipoCompromisso != null) {
+			if (tipoCompromisso.getId() != null) {
+				sb.append(" and t.id = :id ");
+			}
 
-		if (StringUtils.isNotBlank(tipoCompromisso.getDescricao())) {
-			sb.append(" and t.descricao like :nome ");
+			if (StringUtils.isNotBlank(tipoCompromisso.getDescricao())) {
+				sb.append(" and t.descricao like :nome ");
+			}
 		}
 
 		return sb.toString();
@@ -87,12 +89,14 @@ public class TipoCompromissoDaoImpl implements ITipoCompromissoDao {
 	private Map<String, Object> preparaParametrosConsulta(TipoCompromisso tipoCompromisso) {
 		Map<String, Object> parametros = new HashMap<>();
 
-		if (tipoCompromisso.getId() != null) {
-			parametros.put("id", tipoCompromisso.getId());
-		}
+		if (tipoCompromisso != null) {
+			if (tipoCompromisso.getId() != null) {
+				parametros.put("id", tipoCompromisso.getId());
+			}
 
-		if (StringUtils.isNotBlank(tipoCompromisso.getDescricao())) {
-			parametros.put("descricao", "%" + tipoCompromisso.getDescricao() + "%");
+			if (StringUtils.isNotBlank(tipoCompromisso.getDescricao())) {
+				parametros.put("descricao", "%" + tipoCompromisso.getDescricao() + "%");
+			}
 		}
 
 		return parametros;

@@ -56,7 +56,7 @@ public class ParticipanteDaoImpl implements IParticipanteDao {
 			sb.append(" and p.nome like :nome ");
 		}
 
-		if (StringUtils.isNoneBlank(participante.getEmail())) {
+		if (StringUtils.isNotBlank(participante.getEmail())) {
 			sb.append(" and p.email like :email ");
 		}
 
@@ -83,7 +83,7 @@ public class ParticipanteDaoImpl implements IParticipanteDao {
 			parametros.put("nome", "%" + participante.getNome() + "%");
 		}
 
-		if (StringUtils.isNoneBlank(participante.getEmail())) {
+		if (StringUtils.isNotBlank(participante.getEmail())) {
 			parametros.put("email", participante.getEmail());
 		}
 

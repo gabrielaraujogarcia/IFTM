@@ -3,21 +3,31 @@ package br.com.iftm.junit;
 import java.util.List;
 
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
+import br.com.iftm.model.dao.IParticipanteDao;
 import br.com.iftm.model.dao.impl.ParticipanteDaoImpl;
 import br.com.iftm.model.domain.Participante;
+import br.com.iftm.model.domain.TipoCompromisso;
 
 public class JUnitParticipanteDao {
+
+	private static IParticipanteDao dao;
+
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		dao = new ParticipanteDaoImpl();
+	}
 
 	@Test
 	public void salvar() {
 
-		ParticipanteDaoImpl dao = new ParticipanteDaoImpl();
 		Participante participante = new Participante();
 
 		participante.setNome("Maria Caipira");
 		participante.setEmail("maria@email.com");
+		participante.setTelefone("+5534999999999");
 
 		dao.salvarAtualizar(participante);
 
@@ -32,7 +42,6 @@ public class JUnitParticipanteDao {
 	@Test
 	public void pesquisar() {
 
-		ParticipanteDaoImpl dao = new ParticipanteDaoImpl();
 		Participante participante = new Participante();
 
 		participante.setNome("Maria");
@@ -47,7 +56,6 @@ public class JUnitParticipanteDao {
 	@Test
 	public void atualizar() {
 
-		ParticipanteDaoImpl dao = new ParticipanteDaoImpl();
 		Participante participante = new Participante();
 
 		participante.setNome("Joao");
@@ -75,7 +83,6 @@ public class JUnitParticipanteDao {
 	@Test
 	public void deletar() {
 
-		ParticipanteDaoImpl dao = new ParticipanteDaoImpl();
 		Participante participante = new Participante();
 
 		participante.setNome("Joao");
@@ -96,6 +103,37 @@ public class JUnitParticipanteDao {
 		Assert.assertNotNull(participantes);
 		Assert.assertTrue(participantes.isEmpty());
 
+	}
+
+	@Test
+	public void equals() {
+		Participante p1 = new Participante(1L, "Participante 1", "email@email.com", "+553499999999");
+		Participante p2 = new Participante(2L, "Participante 2", "email@email.com", "+553499999999");
+		Participante p3 = new Participante(p1.getId(), p1.getNome(), p1.getEmail(), p1.getTelefone());
+
+		TipoCompromisso t = new TipoCompromisso(1L, "Tipo 1");
+
+		Assert.assertNotEquals(p1, p2);
+		Assert.assertNotEquals(p1, null);
+		Assert.assertNotEquals(p1, t);
+
+		Assert.assertEquals(p1, p1);
+		Assert.assertEquals(p1, p3);
+
+		p1.setId(null);
+		Assert.assertNotEquals(p1, p2);
+
+	}
+
+	@Test
+	public void hashcode() {
+		Participante p1 = new Participante(1L, "Participante 1", "email@email.com", "+553499999999");
+		Participante p2 = new Participante(p1.getId(), p1.getNome(), p1.getEmail(), p1.getTelefone());
+
+		Assert.assertEquals(p1.hashCode(), p2.hashCode());
+
+		p2.setId(null);
+		Assert.assertNotEquals(p1.hashCode(), p2.hashCode());
 	}
 
 }
