@@ -34,9 +34,9 @@ public class Compromisso implements Serializable {
 	@Column(name = "DESCRICAO")
 	private String descricao;
 
-	@Column(name = "DATA")
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date data;
+	@Column(name = "DATA_HORA")
+	private Date dataHora;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "PARTICIPANTES_COMPROMISSO", joinColumns = {
@@ -74,12 +74,12 @@ public class Compromisso implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public Date getData() {
-		return data;
+	public Date getDataHora() {
+		return dataHora;
 	}
 
-	public void setData(Date data) {
-		this.data = data;
+	public void setDataHora(Date data) {
+		this.dataHora = data;
 	}
 
 	public List<Participante> getParticipantes() {
