@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 
 import org.apache.commons.lang3.StringUtils;
 
+import br.com.iftm.model.dao.ConectorBD;
 import br.com.iftm.model.dao.IParticipanteDao;
 import br.com.iftm.model.domain.Participante;
 

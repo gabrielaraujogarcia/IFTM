@@ -20,17 +20,17 @@ public class ParticipanteServiceImpl extends UnicastRemoteObject implements IPar
 
 	@Override
 	public void salvarAtualizar(Participante participante) {
-		
+		dao.salvarAtualizar(participante);
 	}
 
 	@Override
 	public void deletar(Participante participante) {
-		
+		dao.deletar(participante);
 	}
 
 	@Override
 	public List<Participante> pesquisar(Participante participante) {
-		return null;
+		return dao.pesquisar(participante);
 	}
 	
 	
