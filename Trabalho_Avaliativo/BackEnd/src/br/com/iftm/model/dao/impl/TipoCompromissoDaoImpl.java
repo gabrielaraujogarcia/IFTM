@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 
 import org.apache.commons.lang3.StringUtils;
 
+import br.com.iftm.model.dao.ConectorBD;
 import br.com.iftm.model.dao.ITipoCompromissoDao;
 import br.com.iftm.model.domain.TipoCompromisso;
 
@@ -23,7 +24,7 @@ public class TipoCompromissoDaoImpl implements ITipoCompromissoDao {
 
 	private CrudDaoImpl<TipoCompromisso> dao;
 
-	public TipoCompromissoDaoImpl() throws Exception {
+	public TipoCompromissoDaoImpl() {
 		EntityManager em = ConectorBD.recuperaGerenciadorConexao();
 		this.dao = new CrudDaoImpl<>(em);
 	}
