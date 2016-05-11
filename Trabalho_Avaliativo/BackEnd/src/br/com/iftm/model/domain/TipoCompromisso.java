@@ -10,22 +10,32 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="TIPO_COMPROMISSO")
+@Table(name = "TIPO_COMPROMISSO")
 public class TipoCompromisso implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="ID")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID")
 	private Long id;
-	
-	@Column(name="DESCRICAO")
+
+	@Column(name = "DESCRICAO")
 	private String descricao;
 
-	public TipoCompromisso() {                   
-		super();                                 
-	}                                            	
+	public TipoCompromisso() {
+		super();
+	}
+
+	public TipoCompromisso(Long id, String descricao) {
+		super();
+		this.id = id;
+		this.descricao = descricao;
+	}
+
+	public Long getId() {
+		return this.id;
+	}
 
 	public void setId(Long id) {
 		this.id = id;
@@ -63,5 +73,5 @@ public class TipoCompromisso implements Serializable {
 			return false;
 		return true;
 	}
-	
-}	
+
+}
