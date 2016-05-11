@@ -5,17 +5,29 @@
  */
 package br.com.gestaoCompromisso.view;
 
+import br.com.gestaoCompromisso.control.LocalControl;
+import br.com.iftm.model.util.ValidacaoException;
+import java.rmi.RemoteException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author philipe
  */
 public class LocalView extends javax.swing.JInternalFrame {
 
+    private final LocalControl localControl;
+    
     /**
      * Creates new form LocalView
      */
-    public LocalView() {
+    public LocalView() throws RemoteException {
+        this.localControl = new LocalControl();
         initComponents();
+    }
+    
+    public LocalControl getLocalControl() {
+        return this.localControl;
     }
 
     /**
@@ -26,6 +38,7 @@ public class LocalView extends javax.swing.JInternalFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         pnlButtons = new javax.swing.JPanel();
         btnNovo = new javax.swing.JButton();
@@ -111,9 +124,18 @@ public class LocalView extends javax.swing.JInternalFrame {
 
         lblCodigo.setText("Código:");
 
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${localControl.local.id}"), txtCodigo, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        bindingGroup.addBinding(binding);
+
         lblDescricao.setText("Descrição:");
 
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${localControl.local.descricao}"), txtDescricao, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        bindingGroup.addBinding(binding);
+
         lblPontoReferencia.setText("Ponto de Referência:");
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${localControl.local.pontoReferencia}"), txtPontoReferencia, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        bindingGroup.addBinding(binding);
 
         javax.swing.GroupLayout pnlFormLayout = new javax.swing.GroupLayout(pnlForm);
         pnlForm.setLayout(pnlFormLayout);
@@ -152,17 +174,21 @@ public class LocalView extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        tbDados.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
+        org.jdesktop.beansbinding.ELProperty eLProperty = org.jdesktop.beansbinding.ELProperty.create("${localControl.locaisTabela}");
+        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, eLProperty, tbDados);
+        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${id}"));
+        columnBinding.setColumnName("Código");
+        columnBinding.setColumnClass(Long.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${descricao}"));
+        columnBinding.setColumnName("Descrição");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${pontoReferencia}"));
+        columnBinding.setColumnName("Ponto de Referência");
+        columnBinding.setColumnClass(String.class);
+        bindingGroup.addBinding(jTableBinding);
+        jTableBinding.bind();binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${localControl.localSelecionado}"), tbDados, org.jdesktop.beansbinding.BeanProperty.create("selectedElement"));
+        bindingGroup.addBinding(binding);
+
         crlDados.setViewportView(tbDados);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -189,23 +215,44 @@ public class LocalView extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        bindingGroup.bind();
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        // TODO add your handling code here:
+        this.localControl.novo();
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        // TODO add your handling code here:
+        try {
+            localControl.salvar();
+            JOptionPane.showMessageDialog(this, "Local salvo com sucesso!", "Validação dos Campos", JOptionPane.INFORMATION_MESSAGE);
+        } catch (ValidacaoException e) {
+            JOptionPane.showMessageDialog(this, "Falha na validação: " + e.getMessage(), "Validação dos Campos", JOptionPane.WARNING_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro no sistema: " + e.getMessage(), "Validação dos Campos", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        // TODO add your handling code here:
+        if (JOptionPane.showConfirmDialog(this, "Deseja realmente exluir o local?", "Excluir Local", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            try {
+                localControl.excluir();
+                JOptionPane.showMessageDialog(this, "Local excluído com sucesso!", "Excluir Local", JOptionPane.INFORMATION_MESSAGE);
+                localControl.pesquisar();
+            } catch (RemoteException e) {
+                JOptionPane.showMessageDialog(this, "Erro: " + e.getMessage(), "Erro no Sistema", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        // TODO add your handling code here:
+        try {
+            localControl.pesquisar();
+        } catch (RemoteException e) {
+            JOptionPane.showMessageDialog(this, "Erro: " + e.getMessage(), "Erro no Sistema", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
 
@@ -224,5 +271,6 @@ public class LocalView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtDescricao;
     private javax.swing.JTextField txtPontoReferencia;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }

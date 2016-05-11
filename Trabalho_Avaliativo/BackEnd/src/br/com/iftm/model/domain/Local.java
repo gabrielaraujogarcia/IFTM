@@ -10,32 +10,55 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="LOCAL")
+@Table(name = "LOCAL")
 public class Local implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="ID")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID")
 	private Long id;
-	
-	@Column(name="DESCRICAO", unique=true)
+
+	@Column(name = "DESCRICAO", nullable = false, unique = true)
 	private String descricao;
-	
-	@Column(name="PONTO_REFERENCIA")
+
+	@Column(name = "PONTO_REFERENCIA", nullable = true)
 	private String pontoReferencia;
-	
+
 	public Local() {
-		
+		super();
 	}
-	
+
+	public Local(Long id, String descricao, String pontoReferencia) {
+		super();
+		this.id = id;
+		this.descricao = descricao;
+		this.pontoReferencia = pontoReferencia;
+	}
+
 	public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public String getPontoReferencia() {
+		return pontoReferencia;
+	}
+
+	public void setPontoReferencia(String pontoReferencia) {
+		this.pontoReferencia = pontoReferencia;
 	}
 
 	@Override
