@@ -1,6 +1,7 @@
 package br.com.iftm.model.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -16,6 +17,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "COMPROMISSO")
@@ -30,7 +33,11 @@ public class Compromisso implements Serializable {
 
 	@Column(name = "DESCRICAO")
 	private String descricao;
-
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "DATA_HORA")
+	private Date dataHora;
+	
 	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "PARTICIPANTES_COMPROMISSO", 
 		joinColumns = {@JoinColumn(name = "ID_COMPROMISSO", referencedColumnName = "id")},
