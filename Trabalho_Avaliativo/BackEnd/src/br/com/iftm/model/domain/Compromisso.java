@@ -1,6 +1,7 @@
 package br.com.iftm.model.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -16,6 +17,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "COMPROMISSO")
@@ -31,20 +34,24 @@ public class Compromisso implements Serializable {
 	@Column(name = "DESCRICAO")
 	private String descricao;
 
-	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable(name = "PARTICIPANTES_COMPROMISSO", 
-		joinColumns = {@JoinColumn(name = "ID_COMPROMISSO", referencedColumnName = "id")},
-		inverseJoinColumns = {@JoinColumn(name = "ID_PARTICIPANTE", referencedColumnName = "id")})
+	@Column(name = "DATA")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date data;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name = "PARTICIPANTES_COMPROMISSO", joinColumns = {
+			@JoinColumn(name = "ID_COMPROMISSO", referencedColumnName = "id") }, inverseJoinColumns = {
+					@JoinColumn(name = "ID_PARTICIPANTE", referencedColumnName = "id") })
 	private List<Participante> participantes;
-	
-	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.DETACH)
+
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
 	@PrimaryKeyJoinColumn
 	private Local local;
-	
-	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.DETACH)
+
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
 	@PrimaryKeyJoinColumn
 	private TipoCompromisso tipoCompromisso;
-	
+
 	public Compromisso() {
 		super();
 	}
@@ -63,6 +70,14 @@ public class Compromisso implements Serializable {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public Date getData() {
+		return data;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
 	}
 
 	public List<Participante> getParticipantes() {
