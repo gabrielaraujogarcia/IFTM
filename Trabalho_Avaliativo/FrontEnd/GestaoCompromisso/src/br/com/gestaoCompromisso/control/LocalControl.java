@@ -43,7 +43,7 @@ public final class LocalControl {
     }
 
     public void salvar() throws ValidacaoException, RemoteException {
-        //this.local.validar();
+        this.local.validar();
         this.localService.salvar(local);
         this.novo();
         this.pesquisar();

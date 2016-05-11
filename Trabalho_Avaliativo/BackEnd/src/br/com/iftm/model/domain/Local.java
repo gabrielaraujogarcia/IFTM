@@ -9,6 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.apache.commons.lang3.StringUtils;
+
+import br.com.iftm.model.util.ValidacaoException;
+
 @Entity
 @Table(name = "LOCAL")
 public class Local implements Serializable {
@@ -35,6 +39,15 @@ public class Local implements Serializable {
 		this.id = id;
 		this.descricao = descricao;
 		this.pontoReferencia = pontoReferencia;
+	}
+
+	public boolean validar() throws ValidacaoException {
+		if (StringUtils.isNotBlank(this.descricao)) {
+			throw new ValidacaoException("Campo 'Descrição' deve ser preenchido");
+		}
+
+		return true;
+
 	}
 
 	public Long getId() {
