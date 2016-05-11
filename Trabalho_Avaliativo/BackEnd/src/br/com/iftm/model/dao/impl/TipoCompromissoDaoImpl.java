@@ -23,8 +23,8 @@ public class TipoCompromissoDaoImpl implements ITipoCompromissoDao {
 
 	private CrudDaoImpl<TipoCompromisso> dao;
 
-	public TipoCompromissoDaoImpl() {
-		EntityManager em = DBConnector.getEntityManager();
+	public TipoCompromissoDaoImpl() throws Exception {
+		EntityManager em = ConectorBD.recuperaGerenciadorConexao();
 		this.dao = new CrudDaoImpl<>(em);
 	}
 
