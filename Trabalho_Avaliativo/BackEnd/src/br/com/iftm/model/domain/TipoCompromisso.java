@@ -27,6 +27,12 @@ public class TipoCompromisso implements Serializable {
 		super();
 	}
 
+	public TipoCompromisso(Long id, String descricao) {
+		super();
+		this.id = id;
+		this.descricao = descricao;
+	}
+
 	public Long getId() {
 		return this.id;
 	}

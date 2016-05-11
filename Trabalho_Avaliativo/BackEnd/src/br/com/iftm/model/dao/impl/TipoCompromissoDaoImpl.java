@@ -29,24 +29,15 @@ public class TipoCompromissoDaoImpl implements ITipoCompromissoDao {
 	}
 
 	/**
-	 * Método responsável por salvar um TipoCompromisso
+	 * Método responsável por listar todos TipoCompromisso da base de dados
 	 * 
 	 * @param tipoCompromisso
 	 */
 	@Override
-	public void salvar(TipoCompromisso tipoCompromisso) {
-		dao.salvarAtualizar(tipoCompromisso);
-
-	}
-
-	/**
-	 * Método responsável por excluir um TipoCompromisso
-	 * 
-	 * @param tipoCompromisso
-	 */
-	@Override
-	public void deletar(TipoCompromisso tipoCompromisso) {
-		dao.deletar(tipoCompromisso);
+	public List<TipoCompromisso> listar() {
+		String hql = consultaPesquisarParticipantes(null);
+		Map<String, Object> parametros = preparaParametrosConsulta(null);
+		return dao.consultar(hql, parametros);
 
 	}
 
@@ -74,12 +65,14 @@ public class TipoCompromissoDaoImpl implements ITipoCompromissoDao {
 		StringBuilder sb = new StringBuilder("from ").append(TipoCompromisso.class.getCanonicalName()).append(" t ")
 				.append(" where 1 = 1 ");
 
-		if (tipoCompromisso.getId() != null) {
-			sb.append(" and t.id = :id ");
-		}
+		if (tipoCompromisso != null) {
+			if (tipoCompromisso.getId() != null) {
+				sb.append(" and t.id = :id ");
+			}
 
-		if (StringUtils.isNotBlank(tipoCompromisso.getDescricao())) {
-			sb.append(" and t.descricao like :nome ");
+			if (StringUtils.isNotBlank(tipoCompromisso.getDescricao())) {
+				sb.append(" and t.descricao like :nome ");
+			}
 		}
 
 		return sb.toString();
@@ -96,12 +89,14 @@ public class TipoCompromissoDaoImpl implements ITipoCompromissoDao {
 	private Map<String, Object> preparaParametrosConsulta(TipoCompromisso tipoCompromisso) {
 		Map<String, Object> parametros = new HashMap<>();
 
-		if (tipoCompromisso.getId() != null) {
-			parametros.put("id", tipoCompromisso.getId());
-		}
+		if (tipoCompromisso != null) {
+			if (tipoCompromisso.getId() != null) {
+				parametros.put("id", tipoCompromisso.getId());
+			}
 
-		if (StringUtils.isNotBlank(tipoCompromisso.getDescricao())) {
-			parametros.put("descricao", "%" + tipoCompromisso.getDescricao() + "%");
+			if (StringUtils.isNotBlank(tipoCompromisso.getDescricao())) {
+				parametros.put("descricao", "%" + tipoCompromisso.getDescricao() + "%");
+			}
 		}
 
 		return parametros;
