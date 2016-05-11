@@ -36,7 +36,7 @@ public class TipoCompromissoDaoImpl implements ITipoCompromissoDao {
 	 */
 	@Override
 	public List<TipoCompromisso> listar() {
-		String hql = consultaPesquisarParticipantes(null);
+		String hql = consultaPesquisar(null);
 		Map<String, Object> parametros = preparaParametrosConsulta(null);
 		return dao.consultar(hql, parametros);
 
@@ -51,7 +51,7 @@ public class TipoCompromissoDaoImpl implements ITipoCompromissoDao {
 	 */
 	@Override
 	public List<TipoCompromisso> pesquisar(TipoCompromisso tipoCompromisso) {
-		String hql = consultaPesquisarParticipantes(tipoCompromisso);
+		String hql = consultaPesquisar(tipoCompromisso);
 		Map<String, Object> parametros = preparaParametrosConsulta(tipoCompromisso);
 		return dao.consultar(hql, parametros);
 	}
@@ -62,7 +62,7 @@ public class TipoCompromissoDaoImpl implements ITipoCompromissoDao {
 	 * @param tipoCompromisso
 	 * @return
 	 */
-	private String consultaPesquisarParticipantes(TipoCompromisso tipoCompromisso) {
+	private String consultaPesquisar(TipoCompromisso tipoCompromisso) {
 		StringBuilder sb = new StringBuilder("from ").append(TipoCompromisso.class.getCanonicalName()).append(" t ")
 				.append(" where 1 = 1 ");
 

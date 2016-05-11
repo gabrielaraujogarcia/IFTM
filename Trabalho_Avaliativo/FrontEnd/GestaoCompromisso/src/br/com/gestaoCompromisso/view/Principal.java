@@ -5,6 +5,9 @@
  */
 package br.com.gestaoCompromisso.view;
 
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 /**
@@ -110,9 +113,13 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_openMenuItemActionPerformed
 
     private void saveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuItemActionPerformed
-        LocalView localView = new LocalView();
-        this.desktopPane.add(localView);
-        localView.setVisible(true);
+        try {
+            LocalView localView = new LocalView();
+            this.desktopPane.add(localView);
+            localView.setVisible(true);
+        } catch (RemoteException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_saveMenuItemActionPerformed
 
     private void saveAsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveAsMenuItemActionPerformed
