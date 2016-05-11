@@ -37,8 +37,7 @@ public final class ConectorBD {
 	 * Retorna a instancia da unidade de persistencia da aplicacao
 	 * @return
 	 */
-	public static synchronized EntityManager recuperaGerenciadorConexao() 
-		throws Exception {
+	public static synchronized EntityManager recuperaGerenciadorConexao() {
 		
 		if(conector == null) {
 			conector = new ConectorBD();

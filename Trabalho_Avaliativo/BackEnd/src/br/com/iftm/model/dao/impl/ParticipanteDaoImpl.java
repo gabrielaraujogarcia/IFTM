@@ -15,7 +15,7 @@ public class ParticipanteDaoImpl implements IParticipanteDao {
 
 	private CrudDaoImpl<Participante> crudDao;
 
-	public ParticipanteDaoImpl() throws Exception {
+	public ParticipanteDaoImpl() {
 		EntityManager em = ConectorBD.recuperaGerenciadorConexao();
 		this.crudDao = new CrudDaoImpl<>(em);
 	}
