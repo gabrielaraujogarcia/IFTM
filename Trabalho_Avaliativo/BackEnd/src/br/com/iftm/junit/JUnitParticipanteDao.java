@@ -1,27 +1,29 @@
 package br.com.iftm.junit;
 
+import java.rmi.RemoteException;
 import java.util.List;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import br.com.iftm.model.dao.IParticipanteDao;
-import br.com.iftm.model.dao.impl.ParticipanteDaoImpl;
 import br.com.iftm.model.domain.Participante;
 import br.com.iftm.model.domain.TipoCompromisso;
+import br.com.iftm.model.service.IParticipanteService;
+import br.com.iftm.model.service.impl.ParticipanteServiceImpl;
+import br.com.iftm.model.util.ValidacaoException;
 
 public class JUnitParticipanteDao {
 
-	private static IParticipanteDao dao;
+	private static IParticipanteService servico;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		dao = new ParticipanteDaoImpl();
+		servico = new ParticipanteServiceImpl();
 	}
 
 	@Test
-	public void salvar() {
+	public void salvar() throws RemoteException {
 
 		Participante participante = new Participante();
 
@@ -29,23 +31,21 @@ public class JUnitParticipanteDao {
 		participante.setEmail("maria@email.com");
 		participante.setTelefone("+5534999999999");
 
-		dao.salvarAtualizar(participante);
-
-		List<Participante> participantes = dao.pesquisar(participante);
+		servico.salvarAtualizar(participante);
+		List<Participante> participantes = servico.pesquisar(participante);
 
 		Assert.assertNotNull(participantes);
-
 		Assert.assertFalse(participantes.isEmpty());
 
 	}
 
 	@Test
-	public void pesquisar() {
+	public void pesquisar() throws RemoteException {
 
 		Participante participante = new Participante();
 
 		participante.setNome("Maria");
-		List<Participante> participantes = dao.pesquisar(participante);
+		List<Participante> participantes = servico.pesquisar(participante);
 
 		Assert.assertNotNull(participantes);
 
@@ -54,24 +54,24 @@ public class JUnitParticipanteDao {
 	}
 
 	@Test
-	public void atualizar() {
+	public void atualizar() throws RemoteException {
 
 		Participante participante = new Participante();
 
 		participante.setNome("Joao");
 		participante.setEmail("joao@email.com");
 
-		dao.salvarAtualizar(participante);
+		servico.salvarAtualizar(participante);
 
 		participante.setEmail("joao@email.com");
-		List<Participante> participantes = dao.pesquisar(participante);
+		List<Participante> participantes = servico.pesquisar(participante);
 
 		participante = participantes.get(0);
 		participante.setNome("Aparecido");
 
-		dao.salvarAtualizar(participante);
+		servico.salvarAtualizar(participante);
 
-		participantes = dao.pesquisar(participante);
+		participantes = servico.pesquisar(participante);
 		participantes.get(0);
 
 		Assert.assertFalse(participantes.isEmpty());
@@ -81,30 +81,48 @@ public class JUnitParticipanteDao {
 	}
 
 	@Test
-	public void deletar() {
+	public void deletar() throws RemoteException {
 
 		Participante participante = new Participante();
 
 		participante.setNome("Joao");
 		participante.setEmail("joao@email.com");
 
-		dao.salvarAtualizar(participante);
+		servico.salvarAtualizar(participante);
 
-		List<Participante> participantes = dao.pesquisar(participante);
+		List<Participante> participantes = servico.pesquisar(participante);
 
 		if (!participantes.isEmpty()) {
 			for (Participante p : participantes)
-				dao.deletar(p);
+				servico.deletar(p);
 		}
 
 		participante.setNome("Joao");
-		participantes = dao.pesquisar(participante);
+		participantes = servico.pesquisar(participante);
 
 		Assert.assertNotNull(participantes);
 		Assert.assertTrue(participantes.isEmpty());
 
 	}
 
+	@Test(expected=ValidacaoException.class)
+	public void validarNome() throws ValidacaoException {
+		
+		Participante p = new Participante();
+		p.setEmail("email@email.com");
+		p.validarCamposObrigatorios();
+		
+	}
+	
+	@Test(expected=ValidacaoException.class)
+	public void validarContato() throws ValidacaoException {
+		
+		Participante p = new Participante();
+		p.setNome("Pessoa");
+		p.validarCamposObrigatorios();
+		
+	}
+	
 	@Test
 	public void equals() {
 		Participante p1 = new Participante(1L, "Participante 1", "email@email.com", "+553499999999");

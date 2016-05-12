@@ -5,16 +5,35 @@
  */
 package br.com.gestaoCompromisso.view;
 
+import br.com.gestaoCompromisso.control.ParticipanteControl;
+import br.com.gestaoCompromisso.view.converter.LongConverter;
+import br.com.iftm.model.util.ValidacaoException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author philipe
  */
 public class ParticipanteView extends javax.swing.JInternalFrame {
 
+    private ParticipanteControl participanteControl;
+
+    public ParticipanteControl getParticipanteControl() {
+        return participanteControl;
+    }
+    
     /**
      * Creates new form ParticipanteView
      */
     public ParticipanteView() {
+        
+        try {
+            participanteControl = new ParticipanteControl();
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(this,"Erro ao criar o participante: "
+                    +e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+                
         initComponents();
     }
 
@@ -26,6 +45,7 @@ public class ParticipanteView extends javax.swing.JInternalFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         pnlButtons = new javax.swing.JPanel();
         btnNovo = new javax.swing.JButton();
@@ -113,11 +133,36 @@ public class ParticipanteView extends javax.swing.JInternalFrame {
 
         lblCodigo.setText("Código:");
 
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${participanteControl.participante.id}"), txtCodigo, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        binding.setConverter(new LongConverter());
+        bindingGroup.addBinding(binding);
+
+        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodigoActionPerformed(evt);
+            }
+        });
+
         lblNome.setText("Nome:");
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${participanteControl.participante.nome}"), txtNome, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        bindingGroup.addBinding(binding);
+
+        txtNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNomeActionPerformed(evt);
+            }
+        });
 
         lblEmail.setText("E-mail:");
 
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${participanteControl.participante.email}"), txtEmail, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        bindingGroup.addBinding(binding);
+
         lblTelefone.setText("Telefone:");
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${participanteControl.participante.telefone}"), txtTelefone, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        bindingGroup.addBinding(binding);
 
         javax.swing.GroupLayout pnlFormLayout = new javax.swing.GroupLayout(pnlForm);
         pnlForm.setLayout(pnlFormLayout);
@@ -162,17 +207,24 @@ public class ParticipanteView extends javax.swing.JInternalFrame {
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        tbDados.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
+        org.jdesktop.beansbinding.ELProperty eLProperty = org.jdesktop.beansbinding.ELProperty.create("${participanteControl.participantes}");
+        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, eLProperty, tbDados);
+        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${id}"));
+        columnBinding.setColumnName("Id");
+        columnBinding.setColumnClass(Long.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${nome}"));
+        columnBinding.setColumnName("Nome");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${email}"));
+        columnBinding.setColumnName("Email");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${telefone}"));
+        columnBinding.setColumnName("Telefone");
+        columnBinding.setColumnClass(String.class);
+        bindingGroup.addBinding(jTableBinding);
+        jTableBinding.bind();binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${participanteControl.participanteSelecionado}"), tbDados, org.jdesktop.beansbinding.BeanProperty.create("selectedElement"));
+        bindingGroup.addBinding(binding);
+
         crlDados.setViewportView(tbDados);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -199,24 +251,60 @@ public class ParticipanteView extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        bindingGroup.bind();
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        // TODO add your handling code here:
+        participanteControl.novo();
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        // TODO add your handling code here:
+        
+        try {
+            participanteControl.salvarAtualizar();  
+            JOptionPane.showMessageDialog(this, 
+                "Participante inserido com sucesso!", "Info", 
+                JOptionPane.INFORMATION_MESSAGE);
+        } catch(ValidacaoException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Erro", 
+                JOptionPane.WARNING_MESSAGE);
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(this,"Erro ao salvar o participante: "
+                + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+      
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        // TODO add your handling code here:
+        
+        try {
+            participanteControl.excluir();        
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(this,"Erro ao salvar o participante: "
+                + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        // TODO add your handling code here:
+       try {
+            participanteControl.pesquisar();        
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(this, 
+                "Erro ao pesquisar os participantes: "+ e.getMessage(), "Erro", 
+                JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnPesquisarActionPerformed
+
+    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNomeActionPerformed
+
+    private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodigoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -236,5 +324,6 @@ public class ParticipanteView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtTelefone;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
