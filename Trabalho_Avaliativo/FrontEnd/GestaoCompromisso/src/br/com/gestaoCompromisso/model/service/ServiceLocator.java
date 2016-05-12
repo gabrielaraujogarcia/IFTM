@@ -6,6 +6,7 @@
 package br.com.gestaoCompromisso.model.service;
 
 import br.com.iftm.model.service.ILocalService;
+import br.com.iftm.model.service.IParticipanteService;
 import java.rmi.RemoteException;
 
 import java.rmi.Naming;
@@ -21,6 +22,16 @@ public class ServiceLocator {
     public static ILocalService getLocalService() throws RemoteException {
         try {
             return (ILocalService) Naming.lookup(ILocalService.URL_SERVICO);
+        } catch (Exception ex) {
+            throw new RemoteException();
+        }
+    }
+    
+    public static IParticipanteService getParticipanteService() 
+            throws RemoteException {
+        try {
+            return (IParticipanteService) Naming.lookup(IParticipanteService
+                    .URL_SERVICO);
         } catch (Exception ex) {
             throw new RemoteException();
         }

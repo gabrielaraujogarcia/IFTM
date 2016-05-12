@@ -9,6 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.apache.commons.lang3.StringUtils;
+
+import br.com.iftm.model.util.ValidacaoException;
+
 @Entity
 @Table(name = "PARTICIPANTE")
 public class Participante implements Serializable {
@@ -71,6 +75,19 @@ public class Participante implements Serializable {
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
+	}
+	
+	public void validarCamposObrigatorios() throws ValidacaoException {
+		
+		if(nome == null || nome.trim().equals("")) {
+			throw new ValidacaoException("Nome é obrigatório!");
+		}
+		
+		if((email == null || email.trim().equals("")) && 
+				(telefone == null || telefone.trim().equals(""))) {
+			throw new ValidacaoException("Informe ao menos uma opção de contato!");
+		}
+		
 	}
 
 	@Override

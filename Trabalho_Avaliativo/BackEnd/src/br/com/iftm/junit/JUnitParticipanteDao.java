@@ -11,6 +11,7 @@ import br.com.iftm.model.domain.Participante;
 import br.com.iftm.model.domain.TipoCompromisso;
 import br.com.iftm.model.service.IParticipanteService;
 import br.com.iftm.model.service.impl.ParticipanteServiceImpl;
+import br.com.iftm.model.util.ValidacaoException;
 
 public class JUnitParticipanteDao {
 
@@ -104,6 +105,24 @@ public class JUnitParticipanteDao {
 
 	}
 
+	@Test(expected=ValidacaoException.class)
+	public void validarNome() throws ValidacaoException {
+		
+		Participante p = new Participante();
+		p.setEmail("email@email.com");
+		p.validarCamposObrigatorios();
+		
+	}
+	
+	@Test(expected=ValidacaoException.class)
+	public void validarContato() throws ValidacaoException {
+		
+		Participante p = new Participante();
+		p.setNome("Pessoa");
+		p.validarCamposObrigatorios();
+		
+	}
+	
 	@Test
 	public void equals() {
 		Participante p1 = new Participante(1L, "Participante 1", "email@email.com", "+553499999999");
