@@ -123,9 +123,13 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_saveMenuItemActionPerformed
 
     private void saveAsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveAsMenuItemActionPerformed
-        CompromissoView compromissoView = new CompromissoView();
-        this.desktopPane.add(compromissoView);
-        compromissoView.setVisible(true);
+        try{
+            CompromissoView compromissoView = new CompromissoView();
+            this.desktopPane.add(compromissoView);
+            compromissoView.setVisible(true);
+        } catch (RemoteException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_saveAsMenuItemActionPerformed
 
     /**

@@ -20,7 +20,6 @@ public class ParticipanteDaoImpl implements IParticipanteDao {
 		EntityManager em = ConectorBD.recuperaGerenciadorConexao();
 		this.crudDao = new CrudDaoImpl<>(em);
 	}
-	
 
 	@Override
 	public void salvarAtualizar(Participante participante) {

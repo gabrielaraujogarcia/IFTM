@@ -99,4 +99,9 @@ public class Local implements Serializable {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return this.descricao;
+	}
+
 }

@@ -3,6 +3,7 @@ package br.com.iftm.model.service;
 import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
 
+import br.com.iftm.model.service.impl.CompromissoServiceImpl;
 import br.com.iftm.model.service.impl.LocalServiceImpl;
 import br.com.iftm.model.service.impl.ParticipanteServiceImpl;
 import br.com.iftm.model.service.impl.TipoCompromissoServiceImpl;
@@ -19,6 +20,7 @@ public class IniciarServico {
 			Naming.rebind(IParticipanteService.URL_SERVICO, new ParticipanteServiceImpl());
 			Naming.rebind(ITipoCompromissoService.URL_SERVICO, new TipoCompromissoServiceImpl());
 			Naming.rebind(ILocalService.URL_SERVICO, new LocalServiceImpl());
+			Naming.rebind(ICompromissoService.URL_SERVICO, new CompromissoServiceImpl());
 
 			System.out.println("Serviços iniciados com sucesso!");
 

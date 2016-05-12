@@ -1,6 +1,7 @@
 package br.com.iftm.model.domain;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -19,6 +20,10 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.apache.commons.lang3.StringUtils;
+
+import br.com.iftm.model.util.ValidacaoException;
 
 @Entity
 @Table(name = "COMPROMISSO")
@@ -56,6 +61,30 @@ public class Compromisso implements Serializable {
 
 	public Compromisso() {
 		super();
+	}
+
+	public boolean validar() throws ValidacaoException {
+		if (StringUtils.isNotBlank(this.descricao)) {
+			throw new ValidacaoException("Campo 'Descrição' deve ser preenchido");
+		}
+
+//		if (this.dataHora == null) {
+//			throw new ValidacaoException("Campo 'Data/Hora' deve ser preenchido");
+//		}
+
+		if (this.dataHora.before(Calendar.getInstance().getTime())) {
+			throw new ValidacaoException("Campo 'Data/Hora' posterior à data atual");
+		}
+
+		if (this.local == null) {
+			throw new ValidacaoException("Campo 'Local' deve ser preenchido");
+		}
+
+		if (this.tipoCompromisso == null) {
+			throw new ValidacaoException("Campo 'Tipo de Compromisso' deve ser preenchido");
+		}
+
+		return true;
 	}
 
 	public Long getId() {

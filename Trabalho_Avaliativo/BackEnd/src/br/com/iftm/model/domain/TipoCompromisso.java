@@ -74,4 +74,9 @@ public class TipoCompromisso implements Serializable {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return this.descricao;
+	}
+
 }
