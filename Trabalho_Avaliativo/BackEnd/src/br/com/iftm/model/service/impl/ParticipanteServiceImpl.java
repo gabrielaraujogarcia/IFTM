@@ -13,7 +13,7 @@ public class ParticipanteServiceImpl extends UnicastRemoteObject implements IPar
 
 	private static final long serialVersionUID = -1L;
 	private final IParticipanteDao dao;
-	
+
 	public ParticipanteServiceImpl() throws RemoteException {
 		dao = new ParticipanteDaoImpl();
 	}
@@ -32,7 +32,5 @@ public class ParticipanteServiceImpl extends UnicastRemoteObject implements IPar
 	public List<Participante> pesquisar(Participante participante) throws RemoteException {
 		return dao.pesquisar(participante);
 	}
-	
-	
-	
+
 }

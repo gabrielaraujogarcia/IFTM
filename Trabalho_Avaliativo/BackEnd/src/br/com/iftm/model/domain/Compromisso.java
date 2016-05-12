@@ -13,8 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -33,25 +33,27 @@ public class Compromisso implements Serializable {
 
 	@Column(name = "DESCRICAO")
 	private String descricao;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "DATA_HORA")
 	private Date dataHora;
-	
-	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable(name = "PARTICIPANTES_COMPROMISSO", 
-		joinColumns = {@JoinColumn(name = "ID_COMPROMISSO", referencedColumnName = "id")},
-		inverseJoinColumns = {@JoinColumn(name = "ID_PARTICIPANTE", referencedColumnName = "id")})
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name = "PARTICIPANTES_COMPROMISSO", joinColumns = {
+			@JoinColumn(name = "ID_COMPROMISSO", referencedColumnName = "id") }, inverseJoinColumns = {
+					@JoinColumn(name = "ID_PARTICIPANTE", referencedColumnName = "id") })
 	private List<Participante> participantes;
-	
-	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.DETACH)
+
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+	@JoinColumn(name = "ID_LOCAL", referencedColumnName = "ID")
 	@PrimaryKeyJoinColumn
 	private Local local;
-	
-	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.DETACH)
+
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+	@JoinColumn(name = "ID_TIPO_COMPROMISSO", referencedColumnName = "ID")
 	@PrimaryKeyJoinColumn
 	private TipoCompromisso tipoCompromisso;
-	
+
 	public Compromisso() {
 		super();
 	}
@@ -70,6 +72,14 @@ public class Compromisso implements Serializable {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public Date getDataHora() {
+		return dataHora;
+	}
+
+	public void setDataHora(Date data) {
+		this.dataHora = data;
 	}
 
 	public List<Participante> getParticipantes() {
