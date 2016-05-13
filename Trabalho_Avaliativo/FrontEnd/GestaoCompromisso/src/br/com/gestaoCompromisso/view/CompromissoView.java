@@ -5,6 +5,9 @@
  */
 package br.com.gestaoCompromisso.view;
 
+import br.com.gestaoCompromisso.control.CompromissoControl;
+import br.com.iftm.model.util.ValidacaoException;
+import java.rmi.RemoteException;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,11 +16,18 @@ import javax.swing.JOptionPane;
  */
 public class CompromissoView extends javax.swing.JInternalFrame {
 
+    private final CompromissoControl compromissoControl;
+    
     /**
      * Creates new form CompromissoView
      */
-    public CompromissoView() {
+    public CompromissoView() throws RemoteException {
+        compromissoControl = new CompromissoControl();
         initComponents();
+    }
+    
+    public CompromissoControl getCompromissoControl() {
+        return this.compromissoControl;
     }
 
     /**
@@ -28,6 +38,7 @@ public class CompromissoView extends javax.swing.JInternalFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         pnlButtons = new javax.swing.JPanel();
         btnNovo = new javax.swing.JButton();
@@ -46,6 +57,10 @@ public class CompromissoView extends javax.swing.JInternalFrame {
         lblQtdParticipantes = new javax.swing.JLabel();
         participantes = new javax.swing.JLabel();
         btnAddParticipantes = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setClosable(true);
         setMaximizable(true);
@@ -95,7 +110,7 @@ public class CompromissoView extends javax.swing.JInternalFrame {
                 .addComponent(btnExcluir)
                 .addGap(18, 18, 18)
                 .addComponent(btnPesquisar)
-                .addContainerGap(254, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pnlButtonsLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnExcluir, btnNovo, btnPesquisar, btnSalvar});
@@ -122,9 +137,21 @@ public class CompromissoView extends javax.swing.JInternalFrame {
 
         cboTipoCompromisso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        org.jdesktop.beansbinding.ELProperty eLProperty = org.jdesktop.beansbinding.ELProperty.create("${compromissoControl.tipoCompromissoCbo}");
+        org.jdesktop.swingbinding.JComboBoxBinding jComboBoxBinding = org.jdesktop.swingbinding.SwingBindings.createJComboBoxBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, eLProperty, cboTipoCompromisso);
+        bindingGroup.addBinding(jComboBoxBinding);
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${compromissoControl.compromisso.tipoCompromisso}"), cboTipoCompromisso, org.jdesktop.beansbinding.BeanProperty.create("selectedItem"));
+        bindingGroup.addBinding(binding);
+
         lblLocal.setText("Local:");
 
         cboLocal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        eLProperty = org.jdesktop.beansbinding.ELProperty.create("${compromissoControl.locaisCbo}");
+        jComboBoxBinding = org.jdesktop.swingbinding.SwingBindings.createJComboBoxBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, eLProperty, cboLocal);
+        bindingGroup.addBinding(jComboBoxBinding);
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${compromissoControl.compromisso.local}"), cboLocal, org.jdesktop.beansbinding.BeanProperty.create("selectedItem"));
+        bindingGroup.addBinding(binding);
 
         lblQtdParticipantes.setText("Qtde. Participantes:");
 
@@ -137,6 +164,10 @@ public class CompromissoView extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel1.setText("Data:");
+
+        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm"))));
+
         javax.swing.GroupLayout pnlFormLayout = new javax.swing.GroupLayout(pnlForm);
         pnlForm.setLayout(pnlFormLayout);
         pnlFormLayout.setHorizontalGroup(
@@ -145,21 +176,37 @@ public class CompromissoView extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlFormLayout.createSequentialGroup()
+                        .addGap(80, 80, 80)
                         .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblDescricao)
-                            .addComponent(lblTipoCompromisso)
                             .addComponent(lblCodigo)
-                            .addComponent(lblLocal)
-                            .addComponent(lblQtdParticipantes))
+                            .addComponent(jLabel1))
                         .addGap(18, 18, 18)
                         .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cboTipoCompromisso, 0, 441, Short.MAX_VALUE)
-                            .addComponent(participantes)
-                            .addComponent(txtDescricao)
-                            .addComponent(cboLocal, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(btnAddParticipantes))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(txtDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
+                            .addComponent(jFormattedTextField1))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(pnlFormLayout.createSequentialGroup()
+                        .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFormLayout.createSequentialGroup()
+                                .addGap(0, 112, Short.MAX_VALUE)
+                                .addComponent(lblLocal)
+                                .addGap(18, 18, 18)
+                                .addComponent(cboLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlFormLayout.createSequentialGroup()
+                                .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(pnlFormLayout.createSequentialGroup()
+                                        .addComponent(lblQtdParticipantes)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(participantes))
+                                    .addComponent(btnAddParticipantes))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(pnlFormLayout.createSequentialGroup()
+                                .addComponent(lblTipoCompromisso)
+                                .addGap(18, 18, 18)
+                                .addComponent(cboTipoCompromisso, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         pnlFormLayout.setVerticalGroup(
             pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,22 +219,50 @@ public class CompromissoView extends javax.swing.JInternalFrame {
                 .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblDescricao))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cboTipoCompromisso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTipoCompromisso))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cboLocal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblLocal))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblQtdParticipantes)
                     .addComponent(participantes))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAddParticipantes)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        eLProperty = org.jdesktop.beansbinding.ELProperty.create("${compromissoControl.compromissosTabela}");
+        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, eLProperty, jTable1);
+        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${id}"));
+        columnBinding.setColumnName("Código");
+        columnBinding.setColumnClass(Long.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${descricao}"));
+        columnBinding.setColumnName("Descrição");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${dataHora}"));
+        columnBinding.setColumnName("Data/Hora");
+        columnBinding.setColumnClass(java.util.Date.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${local}"));
+        columnBinding.setColumnName("Local");
+        columnBinding.setColumnClass(br.com.iftm.model.domain.Local.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${participantes}"));
+        columnBinding.setColumnName("Participantes");
+        columnBinding.setColumnClass(java.util.List.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${tipoCompromisso}"));
+        columnBinding.setColumnName("Tipo Compromisso");
+        columnBinding.setColumnClass(br.com.iftm.model.domain.TipoCompromisso.class);
+        bindingGroup.addBinding(jTableBinding);
+        jTableBinding.bind();
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -197,7 +272,8 @@ public class CompromissoView extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnlButtons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlForm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pnlForm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -207,26 +283,49 @@ public class CompromissoView extends javax.swing.JInternalFrame {
                 .addComponent(pnlButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(pnlForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(334, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        bindingGroup.bind();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        // TODO add your handling code here:
+        compromissoControl.novo();
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        // TODO add your handling code here:
+        try {
+            compromissoControl.salvar();
+            JOptionPane.showMessageDialog(this, "Compromisso salvo com sucesso!", "Validação dos Campos", JOptionPane.INFORMATION_MESSAGE);
+        } catch (ValidacaoException e) {
+            JOptionPane.showMessageDialog(this, "Falha na validação: " + e.getMessage(), "Validação dos Campos", JOptionPane.WARNING_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro no sistema: " + e.getMessage(), "Validação dos Campos", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        // TODO add your handling code here:
+        if (JOptionPane.showConfirmDialog(this, "Deseja realmente exluir o compromisso?", "Excluir Compromisso", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            try {
+                compromissoControl.excluir();
+                JOptionPane.showMessageDialog(this, "Compromisso excluído com sucesso!", "Excluir Compromisso", JOptionPane.INFORMATION_MESSAGE);
+                compromissoControl.pesquisar();
+            } catch (RemoteException e) {
+                JOptionPane.showMessageDialog(this, "Erro: " + e.getMessage(), "Erro no Sistema", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        // TODO add your handling code here:
+        try {
+            compromissoControl.pesquisar();
+        } catch (RemoteException e) {
+            JOptionPane.showMessageDialog(this, "Erro: " + e.getMessage(), "Erro no Sistema", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnAddParticipantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddParticipantesActionPerformed
@@ -243,6 +342,10 @@ public class CompromissoView extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnSalvar;
     private javax.swing.JComboBox<String> cboLocal;
     private javax.swing.JComboBox<String> cboTipoCompromisso;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblDescricao;
     private javax.swing.JLabel lblLocal;
@@ -253,5 +356,6 @@ public class CompromissoView extends javax.swing.JInternalFrame {
     private javax.swing.JPanel pnlForm;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtDescricao;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }

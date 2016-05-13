@@ -5,8 +5,10 @@
  */
 package br.com.gestaoCompromisso.model.service;
 
+import br.com.iftm.model.service.ICompromissoService;
 import br.com.iftm.model.service.ILocalService;
 import br.com.iftm.model.service.IParticipanteService;
+import br.com.iftm.model.service.ITipoCompromissoService;
 import java.rmi.RemoteException;
 
 import java.rmi.Naming;
@@ -22,6 +24,22 @@ public class ServiceLocator {
     public static ILocalService getLocalService() throws RemoteException {
         try {
             return (ILocalService) Naming.lookup(ILocalService.URL_SERVICO);
+        } catch (Exception ex) {
+            throw new RemoteException();
+        }
+    }
+    
+    public static ICompromissoService getCompromissoService() throws RemoteException {
+        try {
+            return (ICompromissoService) Naming.lookup(ICompromissoService.URL_SERVICO);
+        } catch (Exception ex) {
+            throw new RemoteException();
+        }
+    }
+    
+    public static ITipoCompromissoService getTipoCompromissoService() throws RemoteException {
+        try {
+            return (ITipoCompromissoService) Naming.lookup(ITipoCompromissoService.URL_SERVICO);
         } catch (Exception ex) {
             throw new RemoteException();
         }
