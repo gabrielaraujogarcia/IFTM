@@ -1,8 +1,12 @@
-package br.com.iftm.compromissoService.model.service;
+package br.com.iftm.compromissoService.model.util;
 
 import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
 
+import br.com.iftm.compromissoService.model.service.ICompromissoService;
+import br.com.iftm.compromissoService.model.service.ILocalService;
+import br.com.iftm.compromissoService.model.service.IParticipanteService;
+import br.com.iftm.compromissoService.model.service.ITipoCompromissoService;
 import br.com.iftm.compromissoService.model.service.impl.CompromissoServiceImpl;
 import br.com.iftm.compromissoService.model.service.impl.LocalServiceImpl;
 import br.com.iftm.compromissoService.model.service.impl.ParticipanteServiceImpl;
