@@ -376,16 +376,16 @@
                 <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="Long.class"/>
               </Subbinding>
               <Subbinding sourcePath="${descricao}">
-                <BindingParameter name="NAME" value="Descri&#xe7;&#xe3;o"/>
+                <BindingParameter name="NAME" value="Descricao"/>
                 <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="String.class"/>
               </Subbinding>
               <Subbinding sourcePath="${dataHora}">
-                <BindingParameter name="NAME" value="Data/Hora"/>
+                <BindingParameter name="NAME" value="Data Hora"/>
                 <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="java.util.Date.class"/>
               </Subbinding>
               <Subbinding sourcePath="${local}">
                 <BindingParameter name="NAME" value="Local"/>
-                <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="br.com.iftm.model.domain.Local.class"/>
+                <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="br.com.iftm.compromissoService.model.domain.Local.class"/>
               </Subbinding>
               <Subbinding sourcePath="${participantes}">
                 <BindingParameter name="NAME" value="Participantes"/>
@@ -393,7 +393,7 @@
               </Subbinding>
               <Subbinding sourcePath="${tipoCompromisso}">
                 <BindingParameter name="NAME" value="Tipo Compromisso"/>
-                <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="br.com.iftm.model.domain.TipoCompromisso.class"/>
+                <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="br.com.iftm.compromissoService.model.domain.TipoCompromisso.class"/>
               </Subbinding>
             </BindingProperty>
           </BindingProperties>

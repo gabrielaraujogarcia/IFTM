@@ -6,13 +6,13 @@
 package br.com.gestaoCompromisso.control;
 
 import br.com.gestaoCompromisso.model.service.ServiceLocator;
-import br.com.iftm.model.domain.Compromisso;
-import br.com.iftm.model.domain.Local;
-import br.com.iftm.model.domain.TipoCompromisso;
-import br.com.iftm.model.service.ICompromissoService;
-import br.com.iftm.model.service.ILocalService;
-import br.com.iftm.model.service.ITipoCompromissoService;
-import br.com.iftm.model.util.ValidacaoException;
+import br.com.iftm.compromissoService.model.domain.Compromisso;
+import br.com.iftm.compromissoService.model.domain.Local;
+import br.com.iftm.compromissoService.model.domain.TipoCompromisso;
+import br.com.iftm.compromissoService.model.service.ICompromissoService;
+import br.com.iftm.compromissoService.model.service.ILocalService;
+import br.com.iftm.compromissoService.model.service.ITipoCompromissoService;
+import br.com.iftm.compromissoService.model.util.ValidacaoException;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.rmi.RemoteException;

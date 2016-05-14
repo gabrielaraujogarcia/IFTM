@@ -6,7 +6,7 @@
 package br.com.gestaoCompromisso.view;
 
 import br.com.gestaoCompromisso.control.LocalControl;
-import br.com.iftm.model.util.ValidacaoException;
+import br.com.iftm.compromissoService.model.util.ValidacaoException;
 import java.rmi.RemoteException;
 import javax.swing.JOptionPane;
 
