@@ -21,19 +21,19 @@ public class ParticipanteView extends javax.swing.JInternalFrame {
     public ParticipanteControl getParticipanteControl() {
         return participanteControl;
     }
-    
+
     /**
      * Creates new form ParticipanteView
      */
     public ParticipanteView() {
-        
+
         try {
             participanteControl = new ParticipanteControl();
-        } catch(Exception e) {
-            JOptionPane.showMessageDialog(this,"Erro ao criar o participante: "
-                    +e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao criar o participante: "
+                    + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
-                
+
         initComponents();
     }
 
@@ -261,40 +261,40 @@ public class ParticipanteView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        
+
         try {
-            participanteControl.salvarAtualizar();  
-            JOptionPane.showMessageDialog(this, 
-                "Participante inserido com sucesso!", "Info", 
-                JOptionPane.INFORMATION_MESSAGE);
-        } catch(ValidacaoException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "Erro", 
-                JOptionPane.WARNING_MESSAGE);
-        } catch(Exception e){
-            JOptionPane.showMessageDialog(this,"Erro ao salvar o participante: "
-                + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            participanteControl.salvarAtualizar();
+            JOptionPane.showMessageDialog(this,
+                    "Participante inserido com sucesso!", "Info",
+                    JOptionPane.INFORMATION_MESSAGE);
+        } catch (ValidacaoException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Erro",
+                    JOptionPane.WARNING_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao salvar o participante: "
+                    + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
-      
+
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        
+
         try {
-            participanteControl.excluir();        
-        } catch(Exception e){
-            JOptionPane.showMessageDialog(this,"Erro ao salvar o participante: "
-                + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            participanteControl.excluir();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao salvar o participante: "
+                    + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-       try {
-            participanteControl.pesquisar();        
-        } catch(Exception e){
-            JOptionPane.showMessageDialog(this, 
-                "Erro ao pesquisar os participantes: "+ e.getMessage(), "Erro", 
-                JOptionPane.ERROR_MESSAGE);
+        try {
+            participanteControl.pesquisar();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                    "Erro ao pesquisar os participantes: " + e.getMessage(), "Erro",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnPesquisarActionPerformed
 

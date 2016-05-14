@@ -109,7 +109,7 @@ public class Principal extends javax.swing.JFrame {
         ParticipanteView clienteView = new ParticipanteView();
         this.desktopPane.add(clienteView);
         clienteView.setVisible(true);
-        
+
     }//GEN-LAST:event_openMenuItemActionPerformed
 
     private void saveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuItemActionPerformed
@@ -123,7 +123,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_saveMenuItemActionPerformed
 
     private void saveAsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveAsMenuItemActionPerformed
-        try{
+        try {
             CompromissoView compromissoView = new CompromissoView();
             this.desktopPane.add(compromissoView);
             compromissoView.setVisible(true);

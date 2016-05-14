@@ -21,6 +21,7 @@ import org.jdesktop.observablecollections.ObservableCollections;
  * @author philipe
  */
 public final class LocalControl {
+
     private final PropertyChangeSupport propertyChangeSupport;
 
     private final ILocalService localService;

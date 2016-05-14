@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 public class LocalView extends javax.swing.JInternalFrame {
 
     private final LocalControl localControl;
-    
+
     /**
      * Creates new form LocalView
      */
@@ -25,7 +25,7 @@ public class LocalView extends javax.swing.JInternalFrame {
         this.localControl = new LocalControl();
         initComponents();
     }
-    
+
     public LocalControl getLocalControl() {
         return this.localControl;
     }

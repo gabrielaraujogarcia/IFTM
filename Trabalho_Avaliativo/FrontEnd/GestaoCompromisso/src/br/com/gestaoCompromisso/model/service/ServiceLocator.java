@@ -29,7 +29,7 @@ public class ServiceLocator {
             throw new RemoteException();
         }
     }
-    
+
     public static ICompromissoService getCompromissoService() throws RemoteException {
         try {
             return (ICompromissoService) Naming.lookup(ICompromissoService.URL_SERVICO);
@@ -37,7 +37,7 @@ public class ServiceLocator {
             throw new RemoteException();
         }
     }
-    
+
     public static ITipoCompromissoService getTipoCompromissoService() throws RemoteException {
         try {
             return (ITipoCompromissoService) Naming.lookup(ITipoCompromissoService.URL_SERVICO);
@@ -45,12 +45,11 @@ public class ServiceLocator {
             throw new RemoteException();
         }
     }
-    
-    public static IParticipanteService getParticipanteService() 
+
+    public static IParticipanteService getParticipanteService()
             throws RemoteException {
         try {
-            return (IParticipanteService) Naming.lookup(IParticipanteService
-                    .URL_SERVICO);
+            return (IParticipanteService) Naming.lookup(IParticipanteService.URL_SERVICO);
         } catch (Exception ex) {
             throw new RemoteException();
         }

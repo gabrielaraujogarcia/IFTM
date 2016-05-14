@@ -21,46 +21,47 @@ import org.jdesktop.observablecollections.ObservableCollections;
  * @author ggarcia
  */
 public class ParticipanteControl {
-    
-    private final PropertyChangeSupport propertyChangeSupport =
-            new PropertyChangeSupport(this);
+
+    private final PropertyChangeSupport propertyChangeSupport
+            = new PropertyChangeSupport(this);
     private final IParticipanteService servico;
-    
+
     private Participante participante;
     private Participante participanteSelecionado;
-    private List<Participante> participantes;     
-    
+    private List<Participante> participantes;
+
     public ParticipanteControl() throws RemoteException {
         servico = ServiceLocator.getParticipanteService();
         participantes = ObservableCollections.observableList(
-                      new ArrayList<Participante>());
-        
+                new ArrayList<Participante>());
+
         this.novo();
         this.pesquisar();
     }
-    
+
     public void novo() {
         setParticipante(new Participante());
+        setParticipanteSelecionado(null);
     }
-    
-    public void salvarAtualizar() throws RemoteException, ValidacaoException {        
+
+    public void salvarAtualizar() throws RemoteException, ValidacaoException {
         participante.validarCamposObrigatorios();
-        servico.salvarAtualizar(participante);                     
+        servico.salvarAtualizar(participante);
         novo();
         pesquisar();
     }
-    
+
     public void excluir() throws RemoteException {
         servico.deletar(participante);
         novo();
-        pesquisar();        
+        pesquisar();
     }
-    
+
     public void pesquisar() throws RemoteException {
         participantes.clear();
         participantes.addAll(servico.pesquisar(participante));
     }
-    
+
     public Participante getParticipante() {
         return participante;
     }
@@ -68,7 +69,7 @@ public class ParticipanteControl {
     public void setParticipante(Participante participante) {
         Participante antes = this.participante;
         this.participante = participante;
-        propertyChangeSupport.firePropertyChange("participante", 
+        propertyChangeSupport.firePropertyChange("participante",
                 antes, participante);
     }
 
@@ -76,14 +77,15 @@ public class ParticipanteControl {
         return participanteSelecionado;
     }
 
-    public void setParticipanteSelecionado(Participante participanteSelecionado) {        
-        this.participanteSelecionado = participanteSelecionado;        
-        if(this.participanteSelecionado != null) {
+    public void setParticipanteSelecionado(Participante participanteSelecionado) {
+        this.participanteSelecionado = participanteSelecionado;
+        if (this.participanteSelecionado != null) {
             setParticipante(participanteSelecionado);
         }
-        
+        propertyChangeSupport.firePropertyChange("participante", participante, participanteSelecionado);
+
     }
-    
+
     public List<Participante> getParticipantes() {
         return participantes;
     }
@@ -91,12 +93,13 @@ public class ParticipanteControl {
     public void setParticipantes(List<Participante> participantes) {
         this.participantes = participantes;
     }
-    
+
     public void addPropertyChangeListener(PropertyChangeListener e) {
-        propertyChangeSupport.addPropertyChangeListener(e);
+        this.propertyChangeSupport.addPropertyChangeListener(e);
     }
+
     public void removePropertyChangeListener(PropertyChangeListener e) {
-        propertyChangeSupport.removePropertyChangeListener(e);
+        this.propertyChangeSupport.removePropertyChangeListener(e);
     }
-    
+
 }

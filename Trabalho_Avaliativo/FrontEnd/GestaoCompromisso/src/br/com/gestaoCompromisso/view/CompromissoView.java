@@ -6,6 +6,7 @@
 package br.com.gestaoCompromisso.view;
 
 import br.com.gestaoCompromisso.control.CompromissoControl;
+import br.com.iftm.compromissoService.model.domain.Participante;
 import br.com.iftm.compromissoService.model.util.ValidacaoException;
 import java.rmi.RemoteException;
 import javax.swing.JOptionPane;
@@ -17,7 +18,7 @@ import javax.swing.JOptionPane;
 public class CompromissoView extends javax.swing.JInternalFrame {
 
     private final CompromissoControl compromissoControl;
-    
+
     /**
      * Creates new form CompromissoView
      */
@@ -25,7 +26,7 @@ public class CompromissoView extends javax.swing.JInternalFrame {
         compromissoControl = new CompromissoControl();
         initComponents();
     }
-    
+
     public CompromissoControl getCompromissoControl() {
         return this.compromissoControl;
     }
@@ -173,41 +174,34 @@ public class CompromissoView extends javax.swing.JInternalFrame {
         pnlFormLayout.setHorizontalGroup(
             pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlFormLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlFormLayout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblDescricao)
-                            .addComponent(lblCodigo)
-                            .addComponent(jLabel1))
-                        .addGap(18, 18, 18)
-                        .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
-                            .addComponent(jFormattedTextField1))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(pnlFormLayout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFormLayout.createSequentialGroup()
-                                .addGap(0, 112, Short.MAX_VALUE)
-                                .addComponent(lblLocal)
-                                .addGap(18, 18, 18)
-                                .addComponent(cboLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnlFormLayout.createSequentialGroup()
-                                .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(pnlFormLayout.createSequentialGroup()
-                                        .addComponent(lblQtdParticipantes)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(participantes))
-                                    .addComponent(btnAddParticipantes))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(pnlFormLayout.createSequentialGroup()
-                                .addComponent(lblTipoCompromisso)
-                                .addGap(18, 18, 18)
-                                .addComponent(cboTipoCompromisso, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addContainerGap())))
+                            .addComponent(lblCodigo, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblDescricao, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblTipoCompromisso, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblLocal, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblQtdParticipantes, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18)
+                        .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboTipoCompromisso, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(pnlFormLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(btnAddParticipantes))
+                    .addGroup(pnlFormLayout.createSequentialGroup()
+                        .addGap(183, 183, 183)
+                        .addComponent(participantes)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        pnlFormLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cboLocal, cboTipoCompromisso, jFormattedTextField1, txtDescricao});
+
         pnlFormLayout.setVerticalGroup(
             pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlFormLayout.createSequentialGroup()
@@ -329,8 +323,11 @@ public class CompromissoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnAddParticipantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddParticipantesActionPerformed
-        JOptionPane.showConfirmDialog(null, new AddParticipantesPanel(), "Adicionar Participantes",
-            JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+        Participante p = new Participante();
+        JOptionPane.showConfirmDialog(null, new AddParticipantesPanel(p), "Adicionar Participantes",
+                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+        System.out.println(p.getNome());
     }//GEN-LAST:event_btnAddParticipantesActionPerformed
 
 
