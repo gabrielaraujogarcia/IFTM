@@ -72,7 +72,7 @@ public class TipoCompromissoDaoImpl implements ITipoCompromissoDao {
 			}
 
 			if (StringUtils.isNotBlank(tipoCompromisso.getDescricao())) {
-				sb.append(" and t.descricao like :nome ");
+				sb.append(" and t.descricao like :descricao ");
 			}
 		}
 
