@@ -17,14 +17,28 @@ import javax.swing.JOptionPane;
  * @author philipe
  */
 public class AddParticipantesPanel extends javax.swing.JPanel {
+//    implements IDetalhePopUp<Participante> {
 
     private ParticipanteControl participanteControl;
-    private Participante participante;
+//    private IMestrePopUp<Participante> mestre;
 
-    AddParticipantesPanel(Participante p) {
-        this.participante = p;
-        try {
-            participanteControl = new ParticipanteControl();
+//    public AddParticipantesPanel(IMestrePopUp<Participante> mestre) {
+//
+//        try {
+//            this.mestre = mestre;
+//            this.participanteControl = new ParticipanteControl();
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, "Erro ao criar o participante: "
+//                    + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+//        }
+//
+//        initComponents();
+//    }
+
+     public AddParticipantesPanel() {
+
+        try {            
+            this.participanteControl = new ParticipanteControl();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Erro ao criar o participante: "
                     + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
@@ -32,24 +46,24 @@ public class AddParticipantesPanel extends javax.swing.JPanel {
 
         initComponents();
     }
-
+    
     public ParticipanteControl getParticipanteControl() {
         return participanteControl;
     }
 
-    /**
-     * Creates new form AddParticipantesPanel
-     */
-    public AddParticipantesPanel() {
-        try {
-            participanteControl = new ParticipanteControl();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Erro ao criar o participante: "
-                    + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-        }
-
-        initComponents();
-    }
+//    /**
+//     * Creates new form AddParticipantesPanel
+//     */
+//    public AddParticipantesPanel() {
+//        try {
+//            participanteControl = new ParticipanteControl();
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, "Erro ao criar o participante: "
+//                    + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+//        }
+//
+//        initComponents();
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -65,6 +79,9 @@ public class AddParticipantesPanel extends javax.swing.JPanel {
         lblNome = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
+        txtCodigo = new javax.swing.JTextField();
+        lblCodigo = new javax.swing.JLabel();
+        btnLimpar = new javax.swing.JButton();
         scrParticipantes = new javax.swing.JScrollPane();
         tbParticipantes = new javax.swing.JTable();
 
@@ -72,13 +89,25 @@ public class AddParticipantesPanel extends javax.swing.JPanel {
 
         lblNome.setText("Nome:");
 
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${participanteControl.participante.nome}"), txtNome, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${participanteControl.participante.id}"), txtNome, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
 
         btnPesquisar.setText("Pesquisar");
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisarActionPerformed(evt);
+            }
+        });
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${participanteControl.participante.nome}"), txtCodigo, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        bindingGroup.addBinding(binding);
+
+        lblCodigo.setText("Código:");
+
+        btnLimpar.setText("Limpar");
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparActionPerformed(evt);
             }
         });
 
@@ -90,11 +119,18 @@ public class AddParticipantesPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblCodigo)
+                        .addGap(39, 39, 39)
                         .addComponent(lblNome)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(txtNome))
+                        .addComponent(txtCodigo))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnLimpar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnPesquisar)))
                 .addContainerGap())
         );
@@ -104,10 +140,16 @@ public class AddParticipantesPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNome)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnPesquisar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblCodigo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPesquisar)
+                    .addComponent(btnLimpar))
+                .addGap(51, 51, 51))
         );
 
         org.jdesktop.beansbinding.ELProperty eLProperty = org.jdesktop.beansbinding.ELProperty.create("${participanteControl.participantes}");
@@ -137,17 +179,17 @@ public class AddParticipantesPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(scrParticipantes, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE))
+                    .addComponent(scrParticipantes, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(scrParticipantes, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrParticipantes, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -162,13 +204,40 @@ public class AddParticipantesPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
+    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
+        
+        try {            
+            participanteControl.novo();
+            participanteControl.pesquisar();            
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(this, 
+                    "Erro ao pesquisar os participantes: "+ e.getMessage(), 
+                    "Erro", 
+                    JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_btnLimparActionPerformed
 
+    public Participante getParticipanteSelecionado() {
+        return participanteControl.getParticipante();
+    }
+    
+//    @Override
+//    public void selecionar(IMestrePopUp mestre, Participante participante) {
+//        mestre.processarSelecionado(participante);        
+//    }
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblNome;
     private javax.swing.JScrollPane scrParticipantes;
     private javax.swing.JTable tbParticipantes;
+    private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtNome;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables

@@ -25,12 +25,13 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="pnlButtons" max="32767" attributes="0"/>
-                  <Component id="pnlForm" max="32767" attributes="0"/>
-                  <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jScrollPane1" max="32767" attributes="0"/>
+                  <Component id="jScrollPane3" alignment="0" max="32767" attributes="0"/>
+                  <Component id="pnlButtons" alignment="0" max="32767" attributes="0"/>
+                  <Component id="pnlForm" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -39,10 +40,12 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
               <Component id="pnlButtons" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
               <Component id="pnlForm" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane3" min="-2" pref="95" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="242" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
@@ -141,34 +144,38 @@
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblCodigo" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblDescricao" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblTipoCompromisso" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblLocal" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblQtdParticipantes" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="lblCodigo" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblDescricao" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblTipoCompromisso" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblLocal" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="txtCodigo" alignment="0" min="-2" pref="106" max="-2" attributes="0"/>
+                                      <Component id="txtDescricao" linkSize="2" alignment="0" min="-2" pref="453" max="-2" attributes="0"/>
+                                      <Component id="jFormattedTextField1" linkSize="2" alignment="0" min="-2" pref="453" max="-2" attributes="0"/>
+                                      <Component id="cboTipoCompromisso" linkSize="2" alignment="0" min="-2" pref="453" max="-2" attributes="0"/>
+                                      <Component id="cboLocal" linkSize="2" alignment="0" min="-2" pref="441" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="183" pref="183" max="-2" attributes="0"/>
+                                  <Component id="participantes" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtCodigo" alignment="0" min="-2" pref="106" max="-2" attributes="0"/>
-                              <Component id="txtDescricao" linkSize="2" alignment="0" min="-2" pref="453" max="-2" attributes="0"/>
-                              <Component id="jFormattedTextField1" linkSize="2" alignment="0" min="-2" pref="453" max="-2" attributes="0"/>
-                              <Component id="cboTipoCompromisso" linkSize="2" alignment="0" min="-2" pref="453" max="-2" attributes="0"/>
-                              <Component id="cboLocal" linkSize="2" alignment="0" min="-2" pref="441" max="-2" attributes="0"/>
-                          </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           <Component id="btnAddParticipantes" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="183" pref="183" max="-2" attributes="0"/>
-                          <Component id="participantes" min="-2" max="-2" attributes="0"/>
-                      </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -201,10 +208,7 @@
                       <Component id="lblLocal" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblQtdParticipantes" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="participantes" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="participantes" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnAddParticipantes" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
@@ -219,6 +223,14 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtCodigo">
+          <BindingProperties>
+            <BindingProperty name="text" source="Form" sourcePath="${compromissoControl.compromisso.id}" target="txtCodigo" targetPath="text" updateStrategy="0" immediately="false">
+              <BindingParameter name="javax.swing.binding.ParameterKeys.TEXT_CHANGE_STRATEGY" value="javax.swing.binding.TextChangeStrategy.ON_TYPE"/>
+              <Property name="converter" type="org.jdesktop.beansbinding.Converter" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                <Connection code="new br.com.gestaoCompromisso.view.converter.LongConverter()" type="code"/>
+              </Property>
+            </BindingProperty>
+          </BindingProperties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblDescricao">
           <Properties>
@@ -226,6 +238,11 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtDescricao">
+          <BindingProperties>
+            <BindingProperty name="text" source="Form" sourcePath="${compromissoControl.compromisso.descricao}" target="txtDescricao" targetPath="text" updateStrategy="0" immediately="false">
+              <BindingParameter name="javax.swing.binding.ParameterKeys.TEXT_CHANGE_STRATEGY" value="javax.swing.binding.TextChangeStrategy.ON_TYPE"/>
+            </BindingProperty>
+          </BindingProperties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblTipoCompromisso">
           <Properties>
@@ -275,11 +292,6 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblQtdParticipantes">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Qtde. Participantes:"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="participantes">
           <Properties>
             <Property name="text" type="java.lang.String" value=" "/>
@@ -304,6 +316,12 @@
               <Format format="dd/MM/yyyy HH:mm" subtype="-1" type="1"/>
             </Property>
           </Properties>
+          <BindingProperties>
+            <BindingProperty name="value" source="Form" sourcePath="${compromissoControl.compromisso.dataHora}" target="jFormattedTextField1" targetPath="value" updateStrategy="0" immediately="false"/>
+          </BindingProperties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jFormattedTextField1ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -380,6 +398,51 @@
                 <BindingParameter name="NAME" value="Tipo Compromisso"/>
                 <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="br.com.iftm.compromissoService.model.domain.TipoCompromisso.class"/>
               </Subbinding>
+            </BindingProperty>
+          </BindingProperties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTable" name="jTable3">
+          <Properties>
+            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+              <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+              </TableColumnModel>
+            </Property>
+            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+            </Property>
+          </Properties>
+          <BindingProperties>
+            <BindingProperty name="elements" source="Form" sourcePath="${compromissoControl.participantesTabela}" target="jTable3" targetPath="elements" updateStrategy="0" immediately="true">
+              <Subbinding sourcePath="${id}">
+                <BindingParameter name="NAME" value="Id"/>
+                <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="Long.class"/>
+              </Subbinding>
+              <Subbinding sourcePath="${nome}">
+                <BindingParameter name="NAME" value="Nome"/>
+                <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="String.class"/>
+              </Subbinding>
+            </BindingProperty>
+            <BindingProperty name="selectedElement" source="Form" sourcePath="${compromissoControl.participanteSelecionado}" target="jTable3" targetPath="selectedElement" updateStrategy="0" immediately="false">
+              <BindingParameter name="IGNORE_ADJUSTING" value="N"/>
             </BindingProperty>
           </BindingProperties>
         </Component>
