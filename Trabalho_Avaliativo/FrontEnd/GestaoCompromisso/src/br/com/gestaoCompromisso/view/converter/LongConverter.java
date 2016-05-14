@@ -11,13 +11,13 @@ import org.jdesktop.beansbinding.Converter;
  *
  * @author carlo
  */
-public class LongConverter extends Converter<Long,String> {
+public class LongConverter extends Converter<Long, String> {
 
     @Override
     public Long convertReverse(String value) {
         if (value == null || value.equals("")) {
             return null;
-        }            
+        }
         return Long.parseLong(value);
     }
 

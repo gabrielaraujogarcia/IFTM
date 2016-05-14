@@ -25,6 +25,7 @@ import org.jdesktop.observablecollections.ObservableCollections;
  * @author philipe
  */
 public final class CompromissoControl {
+
     private final PropertyChangeSupport propertyChangeSupport;
 
     private final ICompromissoService compromissoService;
@@ -41,11 +42,11 @@ public final class CompromissoControl {
         compromissoService = ServiceLocator.getCompromissoService();
         localService = ServiceLocator.getLocalService();
         tipoCompromissoService = ServiceLocator.getTipoCompromissoService();
-        
+
         compromissosTabela = ObservableCollections.observableList(new ArrayList<Compromisso>());
         locaisCbo = ObservableCollections.observableList(new ArrayList<Local>());
         tipoCompromissoCbo = ObservableCollections.observableList(new ArrayList<TipoCompromisso>());
-        
+
         locaisCbo.addAll(localService.pesquisar(new Local()));
         tipoCompromissoCbo.addAll(tipoCompromissoService.pesquisar(new TipoCompromisso()));
         propertyChangeSupport = new PropertyChangeSupport(this);
@@ -113,7 +114,7 @@ public final class CompromissoControl {
     public List<TipoCompromisso> getTipoCompromissoCbo() {
         return this.tipoCompromissoCbo;
     }
-    
+
     public List<Compromisso> getCompromissosTabela() {
         return compromissosTabela;
     }
