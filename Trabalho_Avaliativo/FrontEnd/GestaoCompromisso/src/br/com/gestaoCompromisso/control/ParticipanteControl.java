@@ -82,6 +82,7 @@ public class ParticipanteControl {
         if (this.participanteSelecionado != null) {
             setParticipante(participanteSelecionado);
         }
+        propertyChangeSupport.firePropertyChange("participante", participante, participanteSelecionado);
 
     }
 
