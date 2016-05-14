@@ -17,25 +17,10 @@ import javax.swing.JOptionPane;
  * @author philipe
  */
 public class AddParticipantesPanel extends javax.swing.JPanel {
-//    implements IDetalhePopUp<Participante> {
 
     private ParticipanteControl participanteControl;
-//    private IMestrePopUp<Participante> mestre;
 
-//    public AddParticipantesPanel(IMestrePopUp<Participante> mestre) {
-//
-//        try {
-//            this.mestre = mestre;
-//            this.participanteControl = new ParticipanteControl();
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(this, "Erro ao criar o participante: "
-//                    + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-//        }
-//
-//        initComponents();
-//    }
-
-     public AddParticipantesPanel() {
+    public AddParticipantesPanel() {
 
         try {            
             this.participanteControl = new ParticipanteControl();
@@ -50,20 +35,6 @@ public class AddParticipantesPanel extends javax.swing.JPanel {
     public ParticipanteControl getParticipanteControl() {
         return participanteControl;
     }
-
-//    /**
-//     * Creates new form AddParticipantesPanel
-//     */
-//    public AddParticipantesPanel() {
-//        try {
-//            participanteControl = new ParticipanteControl();
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(this, "Erro ao criar o participante: "
-//                    + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-//        }
-//
-//        initComponents();
-//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -221,13 +192,6 @@ public class AddParticipantesPanel extends javax.swing.JPanel {
     public Participante getParticipanteSelecionado() {
         return participanteControl.getParticipante();
     }
-    
-//    @Override
-//    public void selecionar(IMestrePopUp mestre, Participante participante) {
-//        mestre.processarSelecionado(participante);        
-//    }
-    
-    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLimpar;

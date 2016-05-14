@@ -16,11 +16,8 @@ import javax.swing.JOptionPane;
  * @author philipe
  */
 public class CompromissoView extends javax.swing.JInternalFrame {
-//        implements IMestrePopUp<Participante> {
 
     private final CompromissoControl compromissoControl;
-//    private final AddParticipantesPanel formPesquisarParticipantes = 
-//                new AddParticipantesPanel(CompromissoView.this);
     private final AddParticipantesPanel formPesquisarParticipantes = 
                 new AddParticipantesPanel();
     
@@ -376,23 +373,11 @@ public class CompromissoView extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, selecionado.getNome());
         } 
 
-//            JOptionPane.showMessageDialog(null, 
-//                    formPesquisarParticipantes, 
-//                    "Adicionar Participantes", 
-//                    DISPOSE_ON_CLOSE,
-//                    getFrameIcon());
     }//GEN-LAST:event_btnAddParticipantesActionPerformed
 
     private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextField1ActionPerformed
-
-//    @Override
-//    public void processarSelecionado(Participante selecionado) {
-//        compromissoControl.getCompromisso().getParticipantes().add(selecionado);
-//        JOptionPane.showMessageDialog(null, selecionado.getNome());
-//    }
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddParticipantes;
