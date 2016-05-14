@@ -1,8 +1,7 @@
 package br.com.iftm.compromissoService.model.domain;
 
 import java.io.Serializable;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -18,10 +17,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import org.apache.commons.lang3.StringUtils;
 
 import br.com.iftm.compromissoService.model.util.ValidacaoException;
 
@@ -39,9 +34,8 @@ public class Compromisso implements Serializable {
 	@Column(name = "DESCRICAO")
 	private String descricao;
 
-	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "DATA_HORA")
-	private Date dataHora;
+	private String dataHora;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "PARTICIPANTES_COMPROMISSO", joinColumns = {
@@ -64,18 +58,14 @@ public class Compromisso implements Serializable {
 	}
 
 	public boolean validar() throws ValidacaoException {
-		if (StringUtils.isNotBlank(this.descricao)) {
+		
+		if (this.descricao == null || this.descricao.trim().equals("")) {
 			throw new ValidacaoException("Campo 'Descrição' deve ser preenchido");
 		}
 
-		// if (this.dataHora == null) {
-		// throw new ValidacaoException("Campo 'Data/Hora' deve ser
-		// preenchido");
-		// }
-
-		if (this.dataHora.before(Calendar.getInstance().getTime())) {
-			throw new ValidacaoException("Campo 'Data/Hora' posterior à data atual");
-		}
+		 if (this.dataHora == null || this.dataHora.trim().equals("")) {
+			 throw new ValidacaoException("Campo 'Data/Hora' deve ser preenchido");
+		 }
 
 		if (this.local == null) {
 			throw new ValidacaoException("Campo 'Local' deve ser preenchido");
@@ -104,15 +94,20 @@ public class Compromisso implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public Date getDataHora() {
+	public String getDataHora() {
 		return dataHora;
 	}
 
-	public void setDataHora(Date data) {
+	public void setDataHora(String data) {
 		this.dataHora = data;
 	}
 
 	public List<Participante> getParticipantes() {
+		
+		if(participantes == null) {
+			participantes = new ArrayList<>();
+		}
+		
 		return participantes;
 	}
 
