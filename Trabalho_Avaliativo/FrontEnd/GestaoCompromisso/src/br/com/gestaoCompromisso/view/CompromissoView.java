@@ -6,7 +6,7 @@
 package br.com.gestaoCompromisso.view;
 
 import br.com.gestaoCompromisso.control.CompromissoControl;
-import br.com.iftm.model.util.ValidacaoException;
+import br.com.iftm.compromissoService.model.util.ValidacaoException;
 import java.rmi.RemoteException;
 import javax.swing.JOptionPane;
 
@@ -246,20 +246,20 @@ public class CompromissoView extends javax.swing.JInternalFrame {
         columnBinding.setColumnName("Código");
         columnBinding.setColumnClass(Long.class);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${descricao}"));
-        columnBinding.setColumnName("Descrição");
+        columnBinding.setColumnName("Descricao");
         columnBinding.setColumnClass(String.class);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${dataHora}"));
-        columnBinding.setColumnName("Data/Hora");
+        columnBinding.setColumnName("Data Hora");
         columnBinding.setColumnClass(java.util.Date.class);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${local}"));
         columnBinding.setColumnName("Local");
-        columnBinding.setColumnClass(br.com.iftm.model.domain.Local.class);
+        columnBinding.setColumnClass(br.com.iftm.compromissoService.model.domain.Local.class);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${participantes}"));
         columnBinding.setColumnName("Participantes");
         columnBinding.setColumnClass(java.util.List.class);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${tipoCompromisso}"));
         columnBinding.setColumnName("Tipo Compromisso");
-        columnBinding.setColumnClass(br.com.iftm.model.domain.TipoCompromisso.class);
+        columnBinding.setColumnClass(br.com.iftm.compromissoService.model.domain.TipoCompromisso.class);
         bindingGroup.addBinding(jTableBinding);
         jTableBinding.bind();
         jScrollPane1.setViewportView(jTable1);
