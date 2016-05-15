@@ -49,7 +49,7 @@ public final class CompromissoControl {
         tipoCompromissoService = ServiceLocator.getTipoCompromissoService();
 
         compromissosTabela = ObservableCollections.observableList(new ArrayList<Compromisso>());
-        participantesTabela = ObservableCollections.observableList(new ArrayList<Participante>());                
+        participantesTabela = ObservableCollections.observableList(new ArrayList<Participante>());
         locaisCbo = ObservableCollections.observableList(new ArrayList<Local>());
         tipoCompromissoCbo = ObservableCollections.observableList(new ArrayList<TipoCompromisso>());
 
