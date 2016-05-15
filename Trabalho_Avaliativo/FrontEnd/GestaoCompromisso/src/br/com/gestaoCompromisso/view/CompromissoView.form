@@ -29,9 +29,9 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="jScrollPane1" max="32767" attributes="0"/>
-                  <Component id="jScrollPane3" alignment="0" max="32767" attributes="0"/>
                   <Component id="pnlButtons" alignment="0" max="32767" attributes="0"/>
                   <Component id="pnlForm" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jScrollPane3" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -150,17 +150,17 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="lblCodigo" alignment="1" min="-2" max="-2" attributes="0"/>
                                       <Component id="lblDescricao" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblData" alignment="1" min="-2" max="-2" attributes="0"/>
                                       <Component id="lblTipoCompromisso" alignment="1" min="-2" max="-2" attributes="0"/>
                                       <Component id="lblLocal" alignment="1" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="txtCodigo" alignment="0" min="-2" pref="106" max="-2" attributes="0"/>
-                                      <Component id="txtDescricao" linkSize="2" alignment="0" min="-2" pref="453" max="-2" attributes="0"/>
-                                      <Component id="jFormattedTextField1" linkSize="2" alignment="0" min="-2" pref="453" max="-2" attributes="0"/>
-                                      <Component id="cboTipoCompromisso" linkSize="2" alignment="0" min="-2" pref="453" max="-2" attributes="0"/>
-                                      <Component id="cboLocal" linkSize="2" alignment="0" min="-2" pref="441" max="-2" attributes="0"/>
+                                      <Component id="txtDescricao" linkSize="2" alignment="0" pref="453" max="32767" attributes="0"/>
+                                      <Component id="cboTipoCompromisso" linkSize="2" alignment="0" pref="453" max="32767" attributes="0"/>
+                                      <Component id="cboLocal" linkSize="2" alignment="0" pref="441" max="32767" attributes="0"/>
+                                      <Component id="txtData" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -194,8 +194,8 @@
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jFormattedTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblData" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtData" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -305,23 +305,17 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddParticipantesActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="lblData">
           <Properties>
             <Property name="text" type="java.lang.String" value="Data:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField1">
-          <Properties>
-            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-              <Format format="dd/MM/yyyy HH:mm" subtype="-1" type="1"/>
-            </Property>
-          </Properties>
+        <Component class="javax.swing.JTextField" name="txtData">
           <BindingProperties>
-            <BindingProperty name="value" source="Form" sourcePath="${compromissoControl.compromisso.dataHora}" target="jFormattedTextField1" targetPath="value" updateStrategy="0" immediately="false"/>
+            <BindingProperty name="text" source="Form" sourcePath="${compromissoControl.compromisso.dataHora}" target="txtData" targetPath="text" updateStrategy="0" immediately="false">
+              <BindingParameter name="javax.swing.binding.ParameterKeys.TEXT_CHANGE_STRATEGY" value="javax.swing.binding.TextChangeStrategy.ON_TYPE"/>
+            </BindingProperty>
           </BindingProperties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jFormattedTextField1ActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>
