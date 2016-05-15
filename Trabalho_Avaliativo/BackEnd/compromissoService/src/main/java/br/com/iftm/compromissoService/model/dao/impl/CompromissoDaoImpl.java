@@ -10,10 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import br.com.iftm.compromissoService.model.dao.ConectorBD;
 import br.com.iftm.compromissoService.model.dao.ICompromissoDao;
-import br.com.iftm.compromissoService.model.dao.ILocalDao;
 import br.com.iftm.compromissoService.model.domain.Compromisso;
-import br.com.iftm.compromissoService.model.domain.Local;
-import br.com.iftm.compromissoService.model.domain.TipoCompromisso;
 
 public class CompromissoDaoImpl implements ICompromissoDao {
 
@@ -25,13 +22,20 @@ public class CompromissoDaoImpl implements ICompromissoDao {
 	}
 
 	@Override
-	public void salvar(Compromisso compromisso) {
-		this.dao.salvarAtualizar(compromisso);
+	public Compromisso salvar(Compromisso compromisso) {
+		return this.dao.salvarAtualizar(compromisso);
 	}
 
 	@Override
-	public void deletar(Compromisso compromisso) {
-		this.dao.deletar(compromisso);
+	public Compromisso deletar(Compromisso compromisso) {
+		return this.dao.deletar(compromisso);
+	}
+
+	@Override
+	public List<Compromisso> listar() {
+		String hql = consultaPesquisar(new Compromisso());
+		Map<String, Object> parametros = preparaParametrosConsulta(new Compromisso());
+		return dao.consultar(hql, parametros);
 	}
 
 	@Override
@@ -39,6 +43,23 @@ public class CompromissoDaoImpl implements ICompromissoDao {
 		String hql = consultaPesquisar(compromisso);
 		Map<String, Object> parametros = preparaParametrosConsulta(compromisso);
 		return dao.consultar(hql, parametros);
+	}
+
+	@Override
+	public Compromisso pesquisarPorId(Long id) {
+		String hql = preparaConsultaPorId(id);
+		return dao.consultarPorId(hql, id);
+	}
+
+	private String preparaConsultaPorId(Long id) {
+		StringBuilder sb = new StringBuilder("from ").append(Compromisso.class.getCanonicalName()).append(" c ")
+				.append(" where 1 = 1 ");
+
+		if (id != null) {
+			sb.append(" and c.id = :id ");
+		}
+
+		return sb.toString();
 	}
 
 	/**
@@ -52,10 +73,6 @@ public class CompromissoDaoImpl implements ICompromissoDao {
 				.append(" where 1 = 1 ");
 
 		if (compromisso != null) {
-			if (compromisso.getId() != null) {
-				sb.append(" and l.id = :id ");
-			}
-
 			if (StringUtils.isNotBlank(compromisso.getDescricao())) {
 				sb.append(" and l.descricao like :nome ");
 			}
@@ -76,29 +93,12 @@ public class CompromissoDaoImpl implements ICompromissoDao {
 		Map<String, Object> parametros = new HashMap<>();
 
 		if (compromisso != null) {
-			if (compromisso.getId() != null) {
-				parametros.put("id", compromisso.getId());
-			}
-
 			if (StringUtils.isNotBlank(compromisso.getDescricao())) {
 				parametros.put("descricao", "%" + compromisso.getDescricao() + "%");
 			}
 		}
 
 		return parametros;
-	}
-
-	@Override
-	public List<Local> buscarLocais() {
-		ILocalDao localDao = new LocalDaoImpl();
-
-		return localDao.pesquisar(new Local());
-	}
-
-	@Override
-	public List<TipoCompromisso> buscarTipoCompromissos() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

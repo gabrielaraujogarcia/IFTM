@@ -2,21 +2,25 @@ package br.com.iftm.compromissoService.model.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.apache.commons.lang3.StringUtils;
 
 import br.com.iftm.compromissoService.model.util.ValidacaoException;
 
@@ -35,20 +39,21 @@ public class Compromisso implements Serializable {
 	private String descricao;
 
 	@Column(name = "DATA_HORA")
-	private String dataHora;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dataHora;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "PARTICIPANTES_COMPROMISSO", joinColumns = {
-			@JoinColumn(name = "ID_COMPROMISSO", referencedColumnName = "id") }, inverseJoinColumns = {
-					@JoinColumn(name = "ID_PARTICIPANTE", referencedColumnName = "id") })
+			@JoinColumn(name = "ID_COMPROMISSO", referencedColumnName = "ID") }, inverseJoinColumns = {
+					@JoinColumn(name = "ID_PARTICIPANTE", referencedColumnName = "ID") })
 	private List<Participante> participantes;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+	@ManyToOne
 	@JoinColumn(name = "ID_LOCAL", referencedColumnName = "ID")
 	@PrimaryKeyJoinColumn
 	private Local local;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+	@ManyToOne
 	@JoinColumn(name = "ID_TIPO_COMPROMISSO", referencedColumnName = "ID")
 	@PrimaryKeyJoinColumn
 	private TipoCompromisso tipoCompromisso;
@@ -57,15 +62,36 @@ public class Compromisso implements Serializable {
 		super();
 	}
 
+	public Compromisso(String descricao, Date dataHora, List<Participante> participantes, Local local,
+			TipoCompromisso tipoCompromisso) {
+		super();
+		this.descricao = descricao;
+		this.dataHora = dataHora;
+		this.participantes = participantes;
+		this.local = local;
+		this.tipoCompromisso = tipoCompromisso;
+	}
+
+	public Compromisso(Long id, String descricao, Date dataHora, List<Participante> participantes, Local local,
+			TipoCompromisso tipoCompromisso) {
+		super();
+		this.id = id;
+		this.descricao = descricao;
+		this.dataHora = dataHora;
+		this.participantes = participantes;
+		this.local = local;
+		this.tipoCompromisso = tipoCompromisso;
+	}
+
 	public boolean validar() throws ValidacaoException {
-		
-		if (this.descricao == null || this.descricao.trim().equals("")) {
+
+		if (StringUtils.isBlank(descricao)) {
 			throw new ValidacaoException("Campo 'Descrição' deve ser preenchido");
 		}
 
-		 if (this.dataHora == null || this.dataHora.trim().equals("")) {
-			 throw new ValidacaoException("Campo 'Data/Hora' deve ser preenchido");
-		 }
+		if (this.dataHora == null) {
+			throw new ValidacaoException("Campo 'Data/Hora' deve ser preenchido");
+		}
 
 		if (this.local == null) {
 			throw new ValidacaoException("Campo 'Local' deve ser preenchido");
@@ -94,20 +120,20 @@ public class Compromisso implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public String getDataHora() {
+	public Date getDataHora() {
 		return dataHora;
 	}
 
-	public void setDataHora(String data) {
+	public void setDataHora(Date data) {
 		this.dataHora = data;
 	}
 
 	public List<Participante> getParticipantes() {
-		
-		if(participantes == null) {
+
+		if (participantes == null) {
 			participantes = new ArrayList<>();
 		}
-		
+
 		return participantes;
 	}
 

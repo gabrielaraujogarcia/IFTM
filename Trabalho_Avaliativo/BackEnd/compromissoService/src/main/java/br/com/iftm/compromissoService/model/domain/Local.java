@@ -34,6 +34,12 @@ public class Local implements Serializable {
 		super();
 	}
 
+	public Local(String descricao, String pontoReferencia) {
+		super();
+		this.descricao = descricao;
+		this.pontoReferencia = pontoReferencia;
+	}
+
 	public Local(Long id, String descricao, String pontoReferencia) {
 		super();
 		this.id = id;
@@ -41,14 +47,8 @@ public class Local implements Serializable {
 		this.pontoReferencia = pontoReferencia;
 	}
 
-	public Local(String descricao, String pontoReferencia) {
-		super();
-		this.descricao = descricao;
-		this.pontoReferencia = pontoReferencia;
-	}
-
 	public boolean validar() throws ValidacaoException {
-		if (StringUtils.isNotBlank(this.descricao)) {
+		if (StringUtils.isBlank(this.descricao)) {
 			throw new ValidacaoException("Campo 'Descrição' deve ser preenchido");
 		}
 

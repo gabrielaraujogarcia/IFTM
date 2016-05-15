@@ -1,12 +1,14 @@
 package br.com.iftm.compromissoService.model.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.apache.commons.lang3.StringUtils;
@@ -32,6 +34,9 @@ public class Participante implements Serializable {
 
 	@Column(name = "TELEFONE")
 	private String telefone;
+
+	@ManyToMany(mappedBy = "participantes")
+	private List<Compromisso> compromissos;
 
 	public Participante() {
 		super();
@@ -79,11 +84,11 @@ public class Participante implements Serializable {
 
 	public void validarCamposObrigatorios() throws ValidacaoException {
 
-		if (!StringUtils.isNotBlank(nome)) {
+		if (StringUtils.isBlank(nome)) {
 			throw new ValidacaoException("Nome é obrigatório!");
 		}
 
-		if (!StringUtils.isNotBlank(email) && !StringUtils.isNotBlank(telefone)) {
+		if (StringUtils.isBlank(email) && StringUtils.isBlank(telefone)) {
 			throw new ValidacaoException("Informe ao menos uma opção de contato!");
 		}
 
