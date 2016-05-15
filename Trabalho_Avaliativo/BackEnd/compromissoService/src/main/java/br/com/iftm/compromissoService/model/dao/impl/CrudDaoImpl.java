@@ -24,19 +24,21 @@ public class CrudDaoImpl<T> implements ICrudDao<T> {
 	}
 
 	@Override
-	public void salvarAtualizar(T t) {
+	public T salvarAtualizar(T t) {
 		entityManager.getTransaction().begin();
 		t = sincronizar(t);
 		entityManager.persist(t);
 		entityManager.getTransaction().commit();
+		return t;
 	}
 
 	@Override
-	public void deletar(T t) {
+	public T deletar(T t) {
 		entityManager.getTransaction().begin();
 		t = sincronizar(t);
 		entityManager.remove(t);
 		entityManager.getTransaction().commit();
+		return t;
 	}
 
 	@Override
@@ -50,14 +52,22 @@ public class CrudDaoImpl<T> implements ICrudDao<T> {
 
 		Query query = entityManager.createQuery(hql);
 
-		if (params != null) {
-			for (String key : params.keySet()) {
-				Object obj = params.get(key);
-				query.setParameter(key, obj);
-			}
+		for (String key : params.keySet()) {
+			Object obj = params.get(key);
+			query.setParameter(key, obj);
 		}
 
 		return query.getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public T consultarPorId(String hql, Long id) {
+		Query query = entityManager.createQuery(hql);
+
+		query.setParameter("id", id);
+
+		return (T) query.getSingleResult();
 	}
 
 }

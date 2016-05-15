@@ -3,18 +3,17 @@ package br.com.iftm.compromissoService.model.dao;
 import java.util.List;
 
 import br.com.iftm.compromissoService.model.domain.Compromisso;
-import br.com.iftm.compromissoService.model.domain.Local;
-import br.com.iftm.compromissoService.model.domain.TipoCompromisso;
 
 public interface ICompromissoDao {
 
-	void salvar(Compromisso compromisso);
+	Compromisso salvar(Compromisso compromisso);
 
-	void deletar(Compromisso compromisso);
+	Compromisso deletar(Compromisso compromisso);
 
 	List<Compromisso> pesquisar(Compromisso compromisso);
 
-	List<Local> buscarLocais();
+	Compromisso pesquisarPorId(Long id);
 
-	List<TipoCompromisso> buscarTipoCompromissos();
+	List<Compromisso> listar();
+
 }

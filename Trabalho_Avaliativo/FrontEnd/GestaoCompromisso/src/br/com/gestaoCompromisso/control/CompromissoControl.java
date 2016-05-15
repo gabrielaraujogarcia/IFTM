@@ -8,6 +8,7 @@ package br.com.gestaoCompromisso.control;
 import br.com.gestaoCompromisso.model.service.ServiceLocator;
 import br.com.iftm.compromissoService.model.domain.Compromisso;
 import br.com.iftm.compromissoService.model.domain.Local;
+import br.com.iftm.compromissoService.model.domain.Participante;
 import br.com.iftm.compromissoService.model.domain.TipoCompromisso;
 import br.com.iftm.compromissoService.model.service.ICompromissoService;
 import br.com.iftm.compromissoService.model.service.ILocalService;
@@ -33,34 +34,45 @@ public final class CompromissoControl {
     private final ITipoCompromissoService tipoCompromissoService;
 
     private Compromisso compromisso;
-    private Compromisso compromissoSelecionado;
+    private Compromisso compromissoSelecionado;    
+    private Participante participanteSelecionado;
+
     private List<Compromisso> compromissosTabela;
+    private List<Participante> participantesTabela;
     private List<Local> locaisCbo;
     private List<TipoCompromisso> tipoCompromissoCbo;
-
-    public CompromissoControl() throws RemoteException {
+ 
+    public CompromissoControl() throws RemoteException {                     
+        
         compromissoService = ServiceLocator.getCompromissoService();
         localService = ServiceLocator.getLocalService();
         tipoCompromissoService = ServiceLocator.getTipoCompromissoService();
 
         compromissosTabela = ObservableCollections.observableList(new ArrayList<Compromisso>());
+        participantesTabela = ObservableCollections.observableList(new ArrayList<Participante>());
         locaisCbo = ObservableCollections.observableList(new ArrayList<Local>());
         tipoCompromissoCbo = ObservableCollections.observableList(new ArrayList<TipoCompromisso>());
 
         locaisCbo.addAll(localService.pesquisar(new Local()));
         tipoCompromissoCbo.addAll(tipoCompromissoService.pesquisar(new TipoCompromisso()));
         propertyChangeSupport = new PropertyChangeSupport(this);
+        
         this.novo();
         this.pesquisar();
+        
     }
 
     public void novo() {
         this.setCompromisso(new Compromisso());
         this.setCompromissoSelecionado(null);
+        this.setParticipanteSelecionado(null);
+        getParticipantesTabela().clear();
+        
     }
 
     public void salvar() throws ValidacaoException, RemoteException {
         this.compromisso.validar();
+        System.out.println(compromisso.getParticipantes().size());
         this.compromissoService.salvar(compromisso);
         this.novo();
         this.pesquisar();
@@ -78,6 +90,11 @@ public final class CompromissoControl {
     }
 
     public Compromisso getCompromisso() {
+        
+        if(compromisso == null) {
+            compromisso = new Compromisso();
+        }
+        
         return compromisso;
     }
 
@@ -123,6 +140,27 @@ public final class CompromissoControl {
         this.compromissosTabela = compromissosTabela;
     }
 
+    public Participante getParticipanteSelecionado() {
+        return participanteSelecionado;
+    }
+
+    public void setParticipanteSelecionado(Participante participanteSelecionado) {
+        this.participanteSelecionado = participanteSelecionado;
+    }
+
+    public List<Participante> getParticipantesTabela() {
+        
+        if(participantesTabela == null) {
+            participantesTabela = new ArrayList<>();
+        }
+        
+        return participantesTabela;
+    }
+
+    public void setParticipantesTabela(List<Participante> participantesTabela) {
+        this.participantesTabela = participantesTabela;
+    }       
+    
     public void addPropertyChangeListener(PropertyChangeListener e) {
         this.propertyChangeSupport.addPropertyChangeListener(e);
     }
@@ -130,4 +168,5 @@ public final class CompromissoControl {
     public void removePropertyChangeListener(PropertyChangeListener e) {
         this.propertyChangeSupport.removePropertyChangeListener(e);
     }
+    
 }
