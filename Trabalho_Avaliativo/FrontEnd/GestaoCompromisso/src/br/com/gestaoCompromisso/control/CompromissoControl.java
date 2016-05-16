@@ -72,7 +72,6 @@ public final class CompromissoControl {
 
     public void salvar() throws ValidacaoException, RemoteException {
         this.compromisso.validar();
-        System.out.println(compromisso.getParticipantes().size());
         this.compromissoService.salvar(compromisso);
         this.novo();
         this.pesquisar();

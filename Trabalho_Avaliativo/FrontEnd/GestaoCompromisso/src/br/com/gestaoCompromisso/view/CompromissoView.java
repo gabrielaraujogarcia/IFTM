@@ -358,11 +358,8 @@ public class CompromissoView extends javax.swing.JInternalFrame {
         if(option == JOptionPane.OK_OPTION) {
             Participante selecionado = formPesquisarParticipantes
                     .getParticipanteSelecionado();
-            
             compromissoControl.getCompromisso().getParticipantes()
                     .add(selecionado);
-            
-            JOptionPane.showMessageDialog(null, selecionado.getNome());
         } 
 
     }//GEN-LAST:event_btnAddParticipantesActionPerformed
