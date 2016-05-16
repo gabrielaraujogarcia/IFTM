@@ -22,13 +22,13 @@ public class ParticipanteDaoImpl implements IParticipanteDao {
 	}
 
 	@Override
-	public void salvarAtualizar(Participante participante) {
-		crudDao.salvarAtualizar(participante);
+	public Participante salvarAtualizar(Participante participante) {
+		return crudDao.salvarAtualizar(participante);
 	}
 
 	@Override
-	public void deletar(Participante participante) {
-		crudDao.deletar(participante);
+	public Participante deletar(Participante participante) {
+		return crudDao.deletar(participante);
 	}
 
 	@Override
@@ -37,20 +37,19 @@ public class ParticipanteDaoImpl implements IParticipanteDao {
 		Map<String, Object> parametros = preparaParametrosConsulta(participante);
 		return crudDao.consultar(hql, parametros);
 	}
-	
+
 	/**
 	 * Cria o hql para consulta de participantes
+	 * 
 	 * @param participante
 	 * @return
 	 */
 	private String consultaPesquisarParticipantes(Participante participante) {
-		
-		StringBuilder sb = new StringBuilder("from ")
-				.append(Participante.class.getCanonicalName())
-				.append(" p ")
+
+		StringBuilder sb = new StringBuilder("from ").append(Participante.class.getCanonicalName()).append(" p ")
 				.append(" where 1 = 1 ");
-		
-		if(participante.getId() != null) {
+
+		if (participante.getId() != null) {
 			sb.append(" and p.id = :id ");
 		}
 
@@ -66,30 +65,31 @@ public class ParticipanteDaoImpl implements IParticipanteDao {
 	}
 
 	/**
-	 * Cria um mapa contendo os parametros da consulta de participantes de acordo com os
-	 * atributos do participante preenchido. Os atributos considerados sao: id, nome e 
-	 * e-mail.
+	 * Cria um mapa contendo os parametros da consulta de participantes de
+	 * acordo com os atributos do participante preenchido. Os atributos
+	 * considerados sao: id, nome e e-mail.
+	 * 
 	 * @param participante
 	 * @return
 	 */
 	private Map<String, Object> preparaParametrosConsulta(Participante participante) {
-		
+
 		Map<String, Object> parametros = new HashMap<>();
-		
-		if(participante.getId() != null) {
+
+		if (participante.getId() != null) {
 			parametros.put("id", participante.getId());
 		}
 
-		if(StringUtils.isNotBlank(participante.getNome())) {
+		if (StringUtils.isNotBlank(participante.getNome())) {
 			parametros.put("nome", "%" + participante.getNome() + "%");
 		}
 
 		if (StringUtils.isNotBlank(participante.getEmail())) {
 			parametros.put("email", participante.getEmail());
 		}
-		
+
 		return parametros;
-		
+
 	}
-	
+
 }

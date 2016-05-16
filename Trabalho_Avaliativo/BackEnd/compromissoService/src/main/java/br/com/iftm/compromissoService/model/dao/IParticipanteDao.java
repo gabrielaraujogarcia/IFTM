@@ -6,8 +6,8 @@ import br.com.iftm.compromissoService.model.domain.Participante;
 
 public interface IParticipanteDao {
 
-	void salvarAtualizar(Participante participante);
-	void deletar(Participante participante);
+	Participante salvarAtualizar(Participante participante);
+	Participante deletar(Participante participante);
 	List<Participante> pesquisar(Participante participante);
 	
 }

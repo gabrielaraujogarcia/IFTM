@@ -1,5 +1,7 @@
 package br.com.iftm.compromissoService.dao;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.List;
 
 import org.junit.Assert;
@@ -8,6 +10,7 @@ import org.junit.Test;
 
 import br.com.iftm.compromissoService.model.dao.ITipoCompromissoDao;
 import br.com.iftm.compromissoService.model.dao.impl.TipoCompromissoDaoImpl;
+import br.com.iftm.compromissoService.model.domain.Local;
 import br.com.iftm.compromissoService.model.domain.Participante;
 import br.com.iftm.compromissoService.model.domain.TipoCompromisso;
 
@@ -80,6 +83,13 @@ public class TipoCompromissoDaoTest {
 
 		t2.setId(null);
 		Assert.assertNotEquals(t1.hashCode(), t2.hashCode());
+	}
+	
+	@Test
+	public void testToString() {
+		TipoCompromisso tipoCompromisso = new TipoCompromisso();
+		tipoCompromisso.setDescricao("Descricao");
+		assertEquals(tipoCompromisso.getDescricao(), tipoCompromisso.toString());
 	}
 
 }

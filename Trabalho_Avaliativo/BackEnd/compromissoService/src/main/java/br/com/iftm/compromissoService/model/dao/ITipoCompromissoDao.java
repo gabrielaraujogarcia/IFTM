@@ -18,4 +18,6 @@ public interface ITipoCompromissoDao {
 
 	List<TipoCompromisso> pesquisar(TipoCompromisso tipoCompromisso);
 
+	TipoCompromisso pesquisarPorId(Long id);
+
 }

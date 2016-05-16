@@ -103,4 +103,21 @@ public class TipoCompromissoDaoImpl implements ITipoCompromissoDao {
 		return parametros;
 	}
 
+	@Override
+	public TipoCompromisso pesquisarPorId(Long id) {
+		String hql = preparaConsultaPorId(id);
+		return dao.consultarPorId(hql, id);
+	}
+
+	private String preparaConsultaPorId(Long id) {
+		StringBuilder sb = new StringBuilder("from ").append(TipoCompromisso.class.getCanonicalName()).append(" t ")
+				.append(" where 1 = 1 ");
+
+		if (id != null) {
+			sb.append(" and t.id = :id ");
+		}
+
+		return sb.toString();
+	}
+
 }

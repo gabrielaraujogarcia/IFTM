@@ -20,14 +20,14 @@ public interface ICrudDao<T> {
 	 * 
 	 * @param t
 	 */
-	void salvarAtualizar(T t);
+	T salvarAtualizar(T t);
 
 	/**
 	 * Deleta o registro T
 	 * 
 	 * @param t
 	 */
-	void deletar(T t);
+	T deletar(T t);
 
 	/**
 	 * Realiza o merge do objeto com o banco de dados. Utilizado no controle dos
@@ -45,5 +45,14 @@ public interface ICrudDao<T> {
 	 * @return
 	 */
 	List<T> consultar(String hql, Map<String, Object> params);
+
+	/**
+	 * Consulta por ID
+	 * 
+	 * @param hql
+	 * @param id
+	 * @return
+	 */
+	T consultarPorId(String hql, Long id);
 
 }

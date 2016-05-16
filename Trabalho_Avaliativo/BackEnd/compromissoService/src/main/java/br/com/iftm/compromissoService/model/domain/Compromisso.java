@@ -37,18 +37,18 @@ public class Compromisso implements Serializable {
 	@Column(name = "DATA_HORA")
 	private String dataHora;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "PARTICIPANTES_COMPROMISSO", 
 		joinColumns = {@JoinColumn(name = "ID_COMPROMISSO", referencedColumnName = "id")}, 
 		inverseJoinColumns = {@JoinColumn(name = "ID_PARTICIPANTE", referencedColumnName = "id")})
 	private List<Participante> participantes;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+	@ManyToOne
 	@JoinColumn(name = "ID_LOCAL", referencedColumnName = "ID")
 	@PrimaryKeyJoinColumn
 	private Local local;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+	@ManyToOne
 	@JoinColumn(name = "ID_TIPO_COMPROMISSO", referencedColumnName = "ID")
 	@PrimaryKeyJoinColumn
 	private TipoCompromisso tipoCompromisso;

@@ -6,12 +6,14 @@ import br.com.iftm.compromissoService.model.domain.Local;
 
 public interface ILocalDao {
 
-	void salvar(Local local);
+	Local salvar(Local local);
 
-	void deletar(Local local);
+	Local deletar(Local local);
 
 	List<Local> pesquisar(Local local);
 
 	List<Local> listar();
+
+	Local pesquisarPorId(Long id);
 
 }

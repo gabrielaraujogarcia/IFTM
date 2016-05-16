@@ -22,13 +22,13 @@ public class LocalDaoImpl implements ILocalDao {
 	}
 
 	@Override
-	public void salvar(Local local) {
-		this.dao.salvarAtualizar(local);
+	public Local salvar(Local local) {
+		return this.dao.salvarAtualizar(local);
 	}
 
 	@Override
-	public void deletar(Local local) {
-		this.dao.deletar(local);
+	public Local deletar(Local local) {
+		return this.dao.deletar(local);
 	}
 
 	@Override
@@ -40,9 +40,26 @@ public class LocalDaoImpl implements ILocalDao {
 
 	@Override
 	public List<Local> listar() {
-		String hql = consultaPesquisar(null);
-		Map<String, Object> parametros = preparaParametrosConsulta(null);
+		String hql = consultaPesquisar(new Local());
+		Map<String, Object> parametros = preparaParametrosConsulta(new Local());
 		return dao.consultar(hql, parametros);
+	}
+
+	@Override
+	public Local pesquisarPorId(Long id) {
+		String hql = preparaConsultaPorId(id);
+		return dao.consultarPorId(hql, id);
+	}
+
+	private String preparaConsultaPorId(Long id) {
+		StringBuilder sb = new StringBuilder("from ").append(Local.class.getCanonicalName()).append(" l ")
+				.append(" where 1 = 1 ");
+
+		if (id != null) {
+			sb.append(" and l.id = :id ");
+		}
+
+		return sb.toString();
 	}
 
 	/**
@@ -56,12 +73,9 @@ public class LocalDaoImpl implements ILocalDao {
 				.append(" where 1 = 1 ");
 
 		if (local != null) {
-			if (local.getId() != null) {
-				sb.append(" and l.id = :id ");
-			}
 
 			if (StringUtils.isNotBlank(local.getDescricao())) {
-				sb.append(" and l.descricao like :nome ");
+				sb.append(" and l.descricao like :descricao ");
 			}
 		}
 
@@ -80,9 +94,6 @@ public class LocalDaoImpl implements ILocalDao {
 		Map<String, Object> parametros = new HashMap<>();
 
 		if (local != null) {
-			if (local.getId() != null) {
-				parametros.put("id", local.getId());
-			}
 
 			if (StringUtils.isNotBlank(local.getDescricao())) {
 				parametros.put("descricao", "%" + local.getDescricao() + "%");
