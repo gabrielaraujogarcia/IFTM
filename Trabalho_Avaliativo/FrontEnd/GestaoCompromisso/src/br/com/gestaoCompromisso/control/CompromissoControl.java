@@ -88,7 +88,16 @@ public final class CompromissoControl {
         this.compromissosTabela.clear();
         this.compromissosTabela.addAll(compromissoService.pesquisar(compromisso));
     }
-
+    
+    public void removerParticiante() {
+        
+        if(participanteSelecionado != null) {
+            participantesTabela.remove(participanteSelecionado);
+            compromisso.getParticipantes().remove(participanteSelecionado);
+        }            
+        
+    }
+    
     public Compromisso getCompromisso() {
         
         if(compromisso == null) {

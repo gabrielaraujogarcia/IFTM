@@ -39,8 +39,7 @@ public class Compromisso implements Serializable {
 	private String descricao;
 
 	@Column(name = "DATA_HORA")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataHora;
+	private String dataHora;
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "PARTICIPANTES_COMPROMISSO", joinColumns = {
@@ -62,7 +61,7 @@ public class Compromisso implements Serializable {
 		super();
 	}
 
-	public Compromisso(String descricao, Date dataHora, List<Participante> participantes, Local local,
+	public Compromisso(String descricao, String dataHora, List<Participante> participantes, Local local,
 			TipoCompromisso tipoCompromisso) {
 		super();
 		this.descricao = descricao;
@@ -72,7 +71,7 @@ public class Compromisso implements Serializable {
 		this.tipoCompromisso = tipoCompromisso;
 	}
 
-	public Compromisso(Long id, String descricao, Date dataHora, List<Participante> participantes, Local local,
+	public Compromisso(Long id, String descricao, String dataHora, List<Participante> participantes, Local local,
 			TipoCompromisso tipoCompromisso) {
 		super();
 		this.id = id;
@@ -120,11 +119,11 @@ public class Compromisso implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public Date getDataHora() {
+	public String getDataHora() {
 		return dataHora;
 	}
 
-	public void setDataHora(Date data) {
+	public void setDataHora(String data) {
 		this.dataHora = data;
 	}
 

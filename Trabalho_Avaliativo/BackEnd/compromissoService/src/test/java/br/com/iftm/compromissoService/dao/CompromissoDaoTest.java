@@ -73,7 +73,7 @@ public class CompromissoDaoTest {
 
 	@Test
 	public void test1_salvar() {
-		Compromisso compromisso = new Compromisso("Descricao", new Date(), participantes, local, tipoCompromisso);
+		Compromisso compromisso = new Compromisso("Descricao", "blablabla", participantes, local, tipoCompromisso);
 		compromisso = dao.salvar(compromisso);
 
 		Compromisso novoCompromisso = dao.pesquisarPorId(compromisso.getId());
